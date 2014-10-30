@@ -1,0 +1,11 @@
+AllCops:
+  Exclude:
+    - 'examples/**/*'
+    - 'spec/**/*'
+    - 'Rakefile'
+MethodLength:
+  Max: 25
+SignalException:
+  EnforcedStyle: only_raise
+Documentation:
+  Enabled: false
