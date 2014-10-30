@@ -20,7 +20,7 @@ gem install prawn-icon
 
 ## Usage
 
-Prawn::Icon was designed to have an API familar to Prawn. A single icon may be rendered as such:
+Prawn::Icon was designed to have an API familiar to Prawn. A single icon may be rendered as such:
 
 ```ruby
 require 'prawn'
