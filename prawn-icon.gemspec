@@ -13,7 +13,7 @@ Gem::Specification.new do |spec|
   spec.required_ruby_version = '>= 1.9.3'
   spec.required_rubygems_version = '>= 1.3.6'
 
-  spec.homepage = "https://github.com/jessedoyle/prawn-icon/"
+  spec.homepage = 'https://github.com/jessedoyle/prawn-icon/'
 
   spec.test_files = Dir['spec/*_spec.rb']
   spec.authors = ['Jesse Doyle']

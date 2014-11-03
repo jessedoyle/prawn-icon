@@ -22,13 +22,23 @@ describe Prawn::Icon::Interface do
       context 'inline_format: true' do
         it 'should handle text options (size)' do
           pdf = create_pdf
-          # We need to flush the font cache here...
-          Prawn::Icon::FontData.release_data
           pdf.icon '<icon size="60">fa-arrows</icon>', inline_format: true
           text = PDF::Inspector::Text.analyze(pdf.render)
 
           expect(text.strings.first).to eq("\uf047")
           expect(text.font_settings.first[:size]).to eq(60.0)
+        end
+
+        it 'should be able to render on mulitple documents' do
+          pdf1 = create_pdf
+          pdf2 = create_pdf
+          pdf1.icon '<icon>fa-arrows</icon>', inline_format: true
+          pdf2.icon '<icon>fa-arrows</icon>', inline_format: true
+          text1 = PDF::Inspector::Text.analyze(pdf1.render)
+          text2 = PDF::Inspector::Text.analyze(pdf2.render)
+
+          expect(text1.strings.first).to eq("\uf047")
+          expect(text2.strings.first).to eq("\uf047")
         end
       end
 

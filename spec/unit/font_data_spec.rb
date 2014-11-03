@@ -17,7 +17,7 @@ describe Prawn::Icon::FontData do
   end
 
   describe '::load' do
-    it 'should cache font data on a document basis' do
+    it 'should only load a single object for multiple documents' do
       pdf = create_pdf
       data = Prawn::Icon::FontData.load(pdf, 'fa')
       obj_id_1 = data.__id__
@@ -107,6 +107,16 @@ describe Prawn::Icon::FontData do
       extname = File.extname(path)
 
       expect(extname).to eq('.yml')
+    end
+  end
+
+  describe '#load_fonts' do
+    it 'should return a FontData object' do
+      pdf = create_pdf
+      data = Prawn::Icon::FontData.new(pdf)
+      ret_val = data.load_fonts(pdf)
+
+      expect(ret_val.is_a? Prawn::Icon::FontData).to be_true
     end
   end
 

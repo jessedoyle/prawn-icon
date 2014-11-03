@@ -12,12 +12,13 @@ module Prawn
   class Icon
     class FontData
       class << self
-        # Make a simple cache that contains font
-        # data that has been lazily loaded.
+        # Font data lazy-loader that will initialize
+        # icon fonts by document.
         def load(document, set)
           set = set.to_sym
-          @data      ||= {}
+          @data ||= {}
           @data[set] ||= FontData.new(document, set: set)
+          @data[set].load_fonts(document)
         end
 
         # Release all font references if requested.
@@ -44,9 +45,8 @@ module Prawn
       attr_reader :set
 
       def initialize(document, opts = {})
-        @pdf = document
         @set = opts[:set] || :fa
-        update_document_fonts!
+        load_fonts(document)
       end
 
       def font_version
@@ -55,6 +55,11 @@ module Prawn
 
       def legend_path
         File.join(File.dirname(path), "#{@set}.yml")
+      end
+
+      def load_fonts(document)
+        document.font_families[@set.to_s] ||= { normal: path }
+        self
       end
 
       def path
@@ -91,15 +96,6 @@ module Prawn
 
       def yaml
         @yaml ||= YAML.load_file legend_path
-      end
-
-      private
-
-      def update_document_fonts!
-        @pdf.font_families.update(
-        @set.to_s => {
-          normal: path
-        })
       end
     end
   end
