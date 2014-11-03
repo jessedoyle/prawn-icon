@@ -2,6 +2,7 @@
 
 [![Gem Version](https://badge.fury.io/rb/prawn-icon.svg)](http://badge.fury.io/rb/prawn-icon)
 [![Build Status](https://api.travis-ci.org/jessedoyle/prawn-icon.svg?branch=master)](http://travis-ci.org/jessedoyle/prawn-icon)
+[![Code Climate](https://codeclimate.com/github/jessedoyle/prawn-icon/badges/gpa.svg)](https://codeclimate.com/github/jessedoyle/prawn-icon)
 
 Prawn::Icon provides a simple mechanism for rendering icons and icon fonts from within Prawn.
 
