@@ -7,8 +7,8 @@ Gem::Specification.new do |spec|
   spec.platform = Gem::Platform::RUBY
   spec.summary = 'Provides icon fonts for PrawnPDF'
   spec.files =  Dir.glob('{lib,spec,fonts,examples}/**/**/*') +
-                ['prawn-icon.gemspec', 'Gemfile', 'Rakefile',
-                 'COPYING', 'LICENSE', 'GPLv2', 'GPLv3']
+    ['prawn-icon.gemspec', 'Gemfile', 'Rakefile',
+     'COPYING', 'LICENSE', 'GPLv2', 'GPLv3']
   spec.require_path = 'lib'
   spec.required_ruby_version = '>= 1.9.3'
   spec.required_rubygems_version = '>= 1.3.6'
@@ -22,7 +22,8 @@ Gem::Specification.new do |spec|
 
   spec.add_development_dependency('prawn', '~> 1.3')
   spec.add_development_dependency('pdf-inspector', '~> 1.1.0')
-  spec.add_development_dependency('rspec', '2.14.1')
+  spec.add_development_dependency('rspec', '~>2.14.1')
+  spec.add_development_dependency('rubocop', '~>0.27.0')
   spec.add_development_dependency('mocha')
   spec.add_development_dependency('rake')
   spec.add_development_dependency('simplecov')

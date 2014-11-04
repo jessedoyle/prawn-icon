@@ -9,8 +9,9 @@ Bundler.setup
 
 require 'rake'
 require 'rspec/core/rake_task'
+require 'rubocop/rake_task'
 
-task :default => [:spec]
+task :default => [:spec, :rubocop]
 
 desc 'Run all rspec files'
 RSpec::Core::RakeTask.new('spec') do |c|
@@ -28,3 +29,6 @@ task :legend do
   end
   puts 'All Done!'
 end
+
+RuboCop::RakeTask.new
+
