@@ -64,14 +64,7 @@ module Prawn
 
             # Convert [[1,2], [3,4]] to { :1 => 2, :3 => 4 }
             attrs = token.scan(ATTR_REGEX).inject({}) do |k, v|
-              # If attr == size, we must cast value to float,
-              # else symbolize the key and map it to value
-              val =  if v[0] =~ /size/i
-                       { size: v[1].to_f }
-                     else
-                       { v[0].to_sym => v[1] }
-                     end
-
+              val = attr_hash(v)
               k.merge!(val)
             end
 
@@ -127,6 +120,18 @@ module Prawn
           end
 
           icons
+        end
+
+        private
+
+        def attr_hash(value) #:nodoc:
+          # If attr == size, we must cast value to float,
+          # else symbolize the key and map it to value
+          if value[0] =~ /size/i
+            { size: value[1].to_f }
+          else
+            { value[0].to_sym => value[1] }
+          end
         end
       end
     end
