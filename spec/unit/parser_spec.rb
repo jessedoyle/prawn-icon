@@ -55,6 +55,34 @@ describe Prawn::Icon::Parser do
   end
 
   describe '::config_from_tokens' do
+    it 'should handle attrs with double quotes' do
+      string = '<icon size="20">fa-arrows</icon>'
+      tokens = tokenize_string(string)
+      config = Prawn::Icon::Parser.config_from_tokens(tokens)
+      inner = config.first
+
+      expect(inner[:size]).to eq(20.0)
+    end
+
+    it 'should handle attrs with single quotes' do
+      string = "<icon size='20'>fa-arrows</icon>"
+      tokens = tokenize_string(string)
+      config = Prawn::Icon::Parser.config_from_tokens(tokens)
+      inner = config.first
+
+      expect(inner[:size]).to eq(20.0)
+    end
+
+    it 'should handle both single/double quotes in same string' do
+      string = '<icon color="0099FF" size=\'20\'>fa-arrows</icon>'
+      tokens = tokenize_string(string)
+      config = Prawn::Icon::Parser.config_from_tokens(tokens)
+      inner = config.first
+
+      expect(inner[:size]).to eq(20.0)
+      expect(inner[:color]).to eq('0099FF')
+    end
+
     it 'should return an array containing only an empty hash' do
       string = '<icon>fa-arrows</icon>'
       tokens = tokenize_string(string)
