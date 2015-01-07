@@ -39,6 +39,8 @@ module Prawn
 
       TAG_REGEX     = /<icon[^>]*>[^<]*<\/icon>/mi
 
+      ATTR_REGEX    = /(?<attr>[a-zA-Z]*)=["|'](?<val>(\w*[^["|']]))["|']/mi
+
       class << self
         def format(document, string)
           tokens  = string.scan(PARSER_REGEX)
@@ -58,16 +60,15 @@ module Prawn
           tokens.each do |token|
             # Skip the closing tag
             next if token =~ /<\/icon>/i
-
             icon = {}
 
-            # TODO: Only support double quotes?
-            size  = /size="([^"]*)"/i.match(token)
-            color = /color="([^"]*)"/i.match(token)
+            # Convert [[1,2], [3,4]] to { :1 => 2, :3 => 4 }
+            attrs = token.scan(ATTR_REGEX).inject({}) do |k, v|
+              val = attr_hash(v)
+              k.merge!(val)
+            end
 
-            icon[:size]  = size[1].to_f if size
-            icon[:color] = color[1] if color
-
+            icon.merge!(attrs)
             array << icon
           end
 
@@ -119,6 +120,18 @@ module Prawn
           end
 
           icons
+        end
+
+        private
+
+        def attr_hash(value) #:nodoc:
+          # If attr == size, we must cast value to float,
+          # else symbolize the key and map it to value
+          if value[0] =~ /size/i
+            { size: value[1].to_f }
+          else
+            { value[0].to_sym => value[1] }
+          end
         end
       end
     end
