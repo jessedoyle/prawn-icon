@@ -58,7 +58,7 @@ When using `inline_format: true`, you may supply `<icon>` tags with `color` and 
 
 ## Specifying Icon Families
 
-Prawn::Icon uses the prefix of an icon key to determine which font family to use to render a particular icon.
+Prawn::Icon uses the prefix of an icon key to determine which font family is used to render a particular icon.
 
 Currently supported prefixes include:
 
