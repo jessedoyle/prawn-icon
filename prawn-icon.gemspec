@@ -20,7 +20,8 @@ Gem::Specification.new do |spec|
   spec.email = ['jdoyle@ualberta.ca']
   spec.licenses = ['RUBY', 'GPL-2', 'GPL-3']
 
-  spec.add_development_dependency('prawn', '~> 1.3')
+  spec.add_dependency('prawn', '>= 1.3.0', '< 3.0.0')
+
   spec.add_development_dependency('pdf-inspector', '~> 1.1.0')
   spec.add_development_dependency('rspec', '~>2.14.1')
   spec.add_development_dependency('rubocop', '~>0.27.0')

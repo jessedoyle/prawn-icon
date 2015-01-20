@@ -7,7 +7,6 @@
 require "bundler"
 Bundler.setup
 
-require "prawn"
 require "prawn/icon"
 require 'pdf/inspector'
 require "rspec"

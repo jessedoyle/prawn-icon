@@ -1,6 +1,5 @@
 # All example code may be executed by calling `rake legend`
 
-require 'prawn'
 require_relative '../lib/prawn/icon'
 require_relative 'example_helper'
 

@@ -27,7 +27,6 @@ gem install prawn-icon
 Prawn::Icon was designed to have an API familiar to Prawn. A single icon may be rendered as such:
 
 ```ruby
-require 'prawn'
 require 'prawn/icon'
 
 Prawn::Document.generate('icons.pdf') do |pdf|
@@ -44,7 +43,6 @@ produces:
 You can also provide the `inline_format: true` option to Prawn::Icon:
 
 ```ruby
-require 'prawn'
 require 'prawn/icon'
 
 Prawn::Document.generate('inline_icons.pdf') do |pdf|
@@ -57,6 +55,16 @@ produces:
 ![FontAwesome Beer Inline](https://raw.github.com/jessedoyle/prawn-icon/master/examples/fa-beer-inline.png)
 
 When using `inline_format: true`, you may supply `<icon>` tags with `color` and `size` attributes.
+
+## Specifying Icon Families
+
+Prawn::Icon uses the prefix of an icon key to determine which font family to use to render a particular icon.
+
+Currently supported prefixes include:
+
+* `fa` - Fontawesome (eg. `fa-arrows`)
+* `fi` - Foundation Icons (eg. `fi-compass`)
+* `octicon` - Github Octicons (eg. `octicon-calendar`)
 
 ## How It Works
 
