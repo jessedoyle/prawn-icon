@@ -125,6 +125,50 @@ module Prawn
         opts.merge!(inline_format: true, document: self)
         Text::Formatted::Box.new(content, opts)
       end
+
+      # Initialize a new Prawn::Icon, but don't render
+      # the icon to a document. Intended to be used as
+      # an entry of a data array when combined with
+      # Prawn::Table.
+      #
+      # == Parameters:
+      # key::
+      #   Contains the key to a particular icon within
+      #   a font family. Note that :inline_format is not
+      #   supported as a valid option.
+      #
+      # opts::
+      #   A hash of options that may be supplied to the
+      #   underlying text call. Note that :inline_format
+      #   is not supported as a valid option.
+      #
+      # == Returns:
+      #   A Hash containing +font+ and +content+ keys
+      #   that match the data necessary for the
+      #   specified icon.
+      #
+      #   eg. { font: 'fa', content: '/uf047' }
+      #
+      # == Examples:
+      #   require 'prawn/table'
+      #
+      #   data = [
+      #     # Explicit brackets must be userd here
+      #     [pdf.table_icon('fa-arrows'), 'Cell 1'],
+      #     ['Cell 2', 'Cell 3']
+      #   ]
+      #
+      #   pdf.table(data) => (2 x 2 table)
+      #
+      def table_icon(key, opts = {})
+        if opts.delete(:inline_format)
+          raise Prawn::Errors::UnknownOption,
+                'Inline formatting is not supported.'
+        end
+
+        icon = make_icon(key, opts)
+        icon.format_hash
+      end
     end
 
     attr_reader :set, :unicode
@@ -137,6 +181,14 @@ module Prawn
       @key     = strip_specifier_from_key(key)
       @unicode = @data.unicode(@key)
       @options = opts
+    end
+
+    def format_hash
+      base = { font: @set.to_s, content: @unicode }
+      opts = @options.dup
+      # Prawn::Table renames :color to :text_color
+      opts[:text_color] = opts.delete(:color)
+      base.merge(opts)
     end
 
     def render

@@ -42,6 +42,26 @@ describe Prawn::Icon do
     end
   end
 
+  describe '#format_hash' do
+    it 'should add :font and :content keys' do
+      pdf = create_pdf
+      icon = Prawn::Icon.new 'fa-arrows', pdf
+      hash = icon.format_hash
+
+      expect(hash[:font]).to eq('fa')
+      expect(hash[:content]).to eq("\uf047")
+    end
+
+    it 'should rename key :color to :text_color' do
+      pdf = create_pdf
+      icon = Prawn::Icon.new 'fa-arrows', pdf, color: '0099ff'
+      hash = icon.format_hash
+
+      expect(hash[:color]).to be_nil
+      expect(hash[:text_color]).to eq('0099ff')
+    end
+  end
+
   describe '#render' do
     it 'should render an icon to the page' do
       pdf = create_pdf
