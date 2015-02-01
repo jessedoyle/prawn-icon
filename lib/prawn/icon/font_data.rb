@@ -91,7 +91,7 @@ module Prawn
 
       def keys
         # Strip the first element: __font_version__
-        yaml[specifier].keys.map { |k| "#{specifier}-#{k}" }[1..-1]
+        yaml[specifier].keys.map { |k| "#{specifier}-#{k}" }.drop(1)
       end
 
       def yaml
