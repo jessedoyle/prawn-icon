@@ -100,4 +100,22 @@ describe Prawn::Icon::Interface do
       expect(icon.class).to eq(Prawn::Text::Formatted::Box)
     end
   end
+
+  describe '::table_icon' do
+    it 'should return a hash with font and content keys' do
+      pdf = create_pdf
+      icon = pdf.table_icon 'fa-arrows'
+
+      expect(icon.class).to eq(Hash)
+      expect(icon[:font]).to eq('fa')
+      expect(icon[:content]).to eq("\uf047")
+    end
+
+    it 'should raise an error if inline_format: true' do
+      pdf = create_pdf
+      proc = Proc.new { pdf.table_icon 'fa-arrows', inline_format: true }
+
+      expect(proc).to raise_error(Prawn::Errors::UnknownOption)
+    end
+  end
 end
