@@ -1,0 +1,9 @@
+--charset UTF-8
+--main README.md
+--title 'Prawn/Icon Documentation'
+--no-private
+-
+COPYING
+LICENSE
+README.md
+CHANGELOG.md

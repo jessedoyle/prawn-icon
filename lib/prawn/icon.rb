@@ -153,7 +153,7 @@ module Prawn
       #   require 'prawn/table'
       #
       #   data = [
-      #     # Explicit brackets must be userd here
+      #     # Explicit brackets must be used here
       #     [pdf.table_icon('fa-arrows'), 'Cell 1'],
       #     ['Cell 2', 'Cell 3']
       #   ]

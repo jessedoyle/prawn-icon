@@ -56,6 +56,27 @@ produces:
 
 When using `inline_format: true`, you may supply `<icon>` tags with `color` and `size` attributes.
 
+## Use with [Prawn::Table](https://github.com/prawnpdf/prawn-table)
+
+A `table_icon` method may be called when creating a table's data array to render icons within a table cell:
+
+```ruby
+require 'prawn/icon'
+require 'prawn/table'
+
+Prawn::Document.generate('table_icons.pdf') do |pdf|
+
+data = [
+  # Explicit brackets must be used here
+  [pdf.table_icon('fa-birthday-cake'), 'Cake'],
+  ['is', 'Great!']
+]
+
+pdf.table(data) # => (2 x 2 table)
+```
+
+Note that the `table_icon` method does not support the `inline_format: true` option.
+
 ## Specifying Icon Families
 
 Prawn::Icon uses the prefix of an icon key to determine which font family is used to render a particular icon.
