@@ -66,13 +66,14 @@ require 'prawn/table'
 
 Prawn::Document.generate('table_icons.pdf') do |pdf|
 
-data = [
-  # Explicit brackets must be used here
-  [pdf.table_icon('fa-birthday-cake'), 'Cake'],
-  ['is', 'Great!']
-]
+  data = [
+    # Explicit brackets must be used here
+    [pdf.table_icon('fa-birthday-cake'), 'Cake'],
+    ['is', 'Great!']
+  ]
 
-pdf.table(data) # => (2 x 2 table)
+  pdf.table(data) # => (2 x 2 table)
+end
 ```
 
 Note that the `table_icon` method does not support the `inline_format: true` option.
