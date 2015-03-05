@@ -8,6 +8,6 @@
 
 module Prawn
   class Icon
-    VERSION = '0.6.2'.freeze
+    VERSION = '0.6.3'.freeze
   end
 end
