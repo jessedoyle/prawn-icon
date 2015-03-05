@@ -17,13 +17,11 @@ gemfile:
 matrix:
   exclude:
     - rvm: 1.9.3
-    gemfile: gemfiles/prawn-2.0.0.gemfile
-    gemfile: gemfiles/prawn-master.gemfile
+      gemfile: gemfiles/prawn-2.0.0.gemfile
 
     - rvm: jruby-19mode
-    gemfile: gemfiles/prawn-2.0.0.gemfile
-    gemfile: gemfiles/prawn-master.gemfile
+      gemfile: gemfiles/prawn-2.0.0.gemfile
 
   allow_failures:
     - rvm: rbx-2
-    - gemfiles/prawn-master.gemfile
+    - gemfile: gemfiles/prawn-master.gemfile
