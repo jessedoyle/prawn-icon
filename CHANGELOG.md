@@ -1,3 +1,9 @@
+# 0.6.3 - March 4, 2015
+
+- Relaxed Prawn runtime dependency from >= 1.3.0 to >= 1.1.0.
+- Added CI tests for multiple versions of Prawn.
+- Added missing `end` statement to example code in README.
+
 # 0.6.2 - February 10, 2015
 
 - Added this CHANGELOG.
