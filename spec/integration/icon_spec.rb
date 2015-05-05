@@ -29,7 +29,7 @@ describe Prawn::Icon::Interface do
           expect(text.font_settings.first[:size]).to eq(60.0)
         end
 
-        it 'should be able to render on mulitple documents' do
+        it 'should be able to render on multiple documents' do
           pdf1 = create_pdf
           pdf2 = create_pdf
           pdf1.icon '<icon>fa-arrows</icon>', inline_format: true
