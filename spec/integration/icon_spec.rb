@@ -119,3 +119,45 @@ describe Prawn::Icon::Interface do
     end
   end
 end
+
+describe Prawn::Icon do
+  context 'FontAwesome' do
+    it 'should render FontAwesome glyphs' do
+      pdf = create_pdf
+      pdf.icon 'fa-user'
+      text = PDF::Inspector::Text.analyze(pdf.render)
+
+      expect(text.strings.first).to eq("")
+    end
+  end
+
+  context 'Foundation Icons' do
+    it 'should render Foundation glyphs' do
+      pdf = create_pdf
+      pdf.icon 'fi-laptop'
+      text = PDF::Inspector::Text.analyze(pdf.render)
+
+      expect(text.strings.first).to eq("")
+    end
+  end
+
+  context 'GitHub Octicons' do
+    it 'should render GitHub Octicon glyphs' do
+      pdf = create_pdf
+      pdf.icon 'octicon-logo-github'
+      text = PDF::Inspector::Text.analyze(pdf.render)
+
+      expect(text.strings.first).to eq("")
+    end
+  end
+
+  context 'PaymentFont' do
+    it 'should render PaymentFont glyphs' do
+      pdf = create_pdf
+      pdf.icon 'pf-amazon'
+      text = PDF::Inspector::Text.analyze(pdf.render)
+
+      expect(text.strings.first).to eq("")
+    end
+  end
+end
