@@ -1,3 +1,7 @@
+# 0.6.4 - May 4, 2015
+
+- [PaymentFont](http://paymentfont.io) is now supported and included in `Prawn::Icon`.
+
 # 0.6.3 - March 4, 2015
 
 - Relaxed Prawn runtime dependency from >= 1.3.0 to >= 1.1.0.
