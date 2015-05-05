@@ -11,6 +11,7 @@ The following icon fonts ship with Prawn::Icon:
 * FontAwesome (http://fontawesome.io/icons/)
 * Foundation Icons (http://zurb.com/playground/foundation-icon-fonts-3)
 * GitHub Octicons (https://octicons.github.com)
+* PaymentFont (http://paymentfont.io)
 
 Prawn::Icon was originally written by Jesse Doyle.
 
@@ -87,6 +88,7 @@ Currently supported prefixes include:
 * `fa` - Fontawesome (eg. `fa-arrows`)
 * `fi` - Foundation Icons (eg. `fi-compass`)
 * `octicon` - Github Octicons (eg. `octicon-calendar`)
+* `pf` - PaymentFont (eg. `pf-cash`)
 
 ## How It Works
 
