@@ -93,7 +93,7 @@ describe Prawn::Icon::Parser do
       expect(inner).to be_empty
     end
 
-    it 'should return an array containing a signle hash of attrs' do
+    it 'should return an array containing a single hash of attrs' do
       string = '<icon size="12" color="CCCCCC">fa-arrows</icon>'
       tokens = tokenize_string(string)
       config = Prawn::Icon::Parser.config_from_tokens(tokens)
