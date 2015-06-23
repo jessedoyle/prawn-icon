@@ -1,5 +1,5 @@
 octicon:
-  __font_version__: '2.1.2'
+  __font_version__: '2.4.1'
   alert: "\uf02d"
   alignment-align: "\uf08a"
   alignment-aligned-to: "\uf08e"
@@ -192,6 +192,8 @@ octicon:
   telescope: "\uf088"
   terminal: "\uf0c8"
   three-bars: "\uf05e"
+  thumbsdown: "\uf0db"
+  thumbsup: "\uf0da"
   tools: "\uf031"
   trashcan: "\uf0d0"
   triangle-down: "\uf05b"
