@@ -1,3 +1,9 @@
+# Master
+
+## June 23, 2015
+
+- Updated Octicons to v2.4.1. See [changelog](https://github.com/github/octicons/releases/) between versions 2.1.2 and 2.4.1.
+
 # 0.6.4 - May 4, 2015
 
 - [PaymentFont](http://paymentfont.io) is now supported and included in `Prawn::Icon`.
