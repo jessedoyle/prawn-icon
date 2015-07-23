@@ -23,7 +23,8 @@ module Prawn
 
   # Easy icon font usage within Prawn. Currently
   # supported icon fonts include: FontAwesome,
-  # Zurb Foundicons, and GitHub Octicons.
+  # Zurb Foundicons, GitHub Octicons, as well as
+  # PaymentFont.
   #
   # = Icon Keys
   #
@@ -134,20 +135,23 @@ module Prawn
       # == Parameters:
       # key::
       #   Contains the key to a particular icon within
-      #   a font family. Note that :inline_format is not
-      #   supported as a valid option.
+      #   a font family. The key may contain a string
+      #   with format tags if +inline_format: true+ in
+      #   the +opts+ hash.
       #
       # opts::
       #   A hash of options that may be supplied to the
-      #   underlying text call. Note that :inline_format
-      #   is not supported as a valid option.
+      #   underlying text call.
       #
       # == Returns:
       #   A Hash containing +font+ and +content+ keys
       #   that match the data necessary for the
       #   specified icon.
       #
-      #   eg. { font: 'fa', content: '/uf047' }
+      #   eg. { font: 'fa', content: '\uf047' }
+      #
+      #   Note that the +font+ key will not be set
+      #   if +inline_format: true+.
       #
       # == Examples:
       #   require 'prawn/table'
@@ -161,13 +165,12 @@ module Prawn
       #   pdf.table(data) => (2 x 2 table)
       #
       def table_icon(key, opts = {})
-        if opts.delete(:inline_format)
-          raise Prawn::Errors::UnknownOption,
-                'Inline formatting is not supported.'
+        if opts[:inline_format]
+          content = Icon::Parser.format(self, key)
+          opts.merge(content: content)
+        else
+          make_icon(key, opts).format_hash
         end
-
-        icon = make_icon(key, opts)
-        icon.format_hash
       end
     end
 
@@ -199,7 +202,7 @@ module Prawn
 
     private
 
-    def strip_specifier_from_key(key)
+    def strip_specifier_from_key(key) #:nodoc:
       reg = Regexp.new "#{@data.specifier}-"
       key.sub(reg, '') # Only one specifier
     end
