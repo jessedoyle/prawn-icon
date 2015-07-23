@@ -77,7 +77,7 @@ Prawn::Document.generate('table_icons.pdf') do |pdf|
 end
 ```
 
-Note that the `table_icon` method does not support the `inline_format: true` option.
+Note that the `table_icon` method supports the `inline_format: true` option to create multiple icons within a cell.
 
 ## Specifying Icon Families
 
