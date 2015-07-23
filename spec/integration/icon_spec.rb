@@ -102,20 +102,49 @@ describe Prawn::Icon::Interface do
   end
 
   describe '::table_icon' do
-    it 'should return a hash with font and content keys' do
-      pdf = create_pdf
-      icon = pdf.table_icon 'fa-arrows'
+    context 'inline_format: false (default)' do
+      it 'should return a hash with font and content keys' do
+        pdf = create_pdf
+        icon = pdf.table_icon 'fa-arrows'
 
-      expect(icon.class).to eq(Hash)
-      expect(icon[:font]).to eq('fa')
-      expect(icon[:content]).to eq("\uf047")
+        expect(icon.class).to eq(Hash)
+        expect(icon[:font]).to eq('fa')
+        expect(icon[:content]).to eq("\uf047")
+      end
     end
 
-    it 'should raise an error if inline_format: true' do
-      pdf = create_pdf
-      proc = Proc.new { pdf.table_icon 'fa-arrows', inline_format: true }
+    context 'inline_format: true' do
+      it 'should convert <icon> to <font> tags' do
+        pdf = create_pdf
+        icon = pdf.table_icon '<icon>fa-user</icon>', inline_format: true
 
-      expect(proc).to raise_error(Prawn::Errors::UnknownOption)
+        expect(icon.class).to eq(Hash)
+        expect(icon[:content]).to eq('<font name="fa"></font>')
+        expect(icon[:inline_format]).to be_true
+      end
+
+      it 'should ignore all other tags' do
+        pdf = create_pdf
+        a = ['<b>BOLD</b> <color rgb="0099FF">BLUE</color>', inline_format: true]
+        icon = pdf.table_icon(*a)
+
+        expect(icon.class).to eq(Hash)
+        expect(icon[:content]).to eq(a[0])
+        expect(icon[:inline_format]).to be_true
+      end
+
+      context 'multiple icons' do
+        it 'should ignore any text not in an icon tag' do
+          pdf = create_pdf
+          a = ['<icon>fa-user</icon> Some Text <icon>fi-laptop</icon>', inline_format: true]
+          out = '<font name="fa"></font> Some Text <font name="fi"></font>'
+          icon = pdf.table_icon(*a)
+
+          expect(icon.class).to eq(Hash)
+          expect(icon[:content]).to eq(out)
+          expect(icon[:inline_format]).to be_true
+        end
+      end
     end
   end
 end
