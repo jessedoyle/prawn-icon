@@ -1,7 +1,7 @@
-# Master
+# 0.7.0 - July 23, 2015
 
-## June 23, 2015
-
+- Update Travis config to relax the versions of `Prawn` and `Ruby` that are tested against. See `.travis.yml` to see what versions are supported (though you shouldn't have issues with other versions).
+- Implement inline_format for table icons. [#14](https://github.com/jessedoyle/prawn-icon/pull/14).
 - Updated Octicons to v2.4.1. See [changelog](https://github.com/github/octicons/releases/) between versions 2.1.2 and 2.4.1.
 
 # 0.6.4 - May 4, 2015
