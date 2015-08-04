@@ -96,7 +96,7 @@ Prawn::Icon uses a "legend" to map icon keys to unicode characters that resprese
 
 This legend is a standard `.yml` file located within the font's directory.
 
-If you wish to fork this repository and add a new font, you'll likely need to supply a corresponding legend file. Please see the current legend files within the `fonts` directory for examples.
+If you wish to fork this repository and add a new font, you'll likely need to supply a corresponding legend file. Please see the current legend files within the `data/fonts` directory for examples.
 
 ## Examples
 

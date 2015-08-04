@@ -1,3 +1,7 @@
+# 0.7.1 - August 4, 2015
+
+- Moved the internal font directory from `fonts` to `data/fonts` for consistency between Prawn-related gems [#16](https://github.com/jessedoyle/prawn-icon/issues/16).
+
 # 0.7.0 - July 23, 2015
 
 - Update Travis config to relax the versions of `Prawn` and `Ruby` that are tested against. See `.travis.yml` to see what versions are supported (though you shouldn't have issues with other versions).

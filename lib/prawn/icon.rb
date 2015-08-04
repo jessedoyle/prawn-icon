@@ -54,7 +54,7 @@ module Prawn
   #
   class Icon
     FONTDIR = File.join \
-      File.expand_path('../../..', __FILE__), 'fonts'
+      File.expand_path('../../..', __FILE__), 'data/fonts'
 
     module Interface
       # Set up and draw an icon on this document. This
