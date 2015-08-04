@@ -6,7 +6,7 @@ Gem::Specification.new do |spec|
   spec.version  = Prawn::Icon::VERSION
   spec.platform = Gem::Platform::RUBY
   spec.summary  = 'Provides icon fonts for PrawnPDF'
-  spec.files    =  Dir.glob('{lib,spec,fonts,examples}/**/**/*') +
+  spec.files    =  Dir.glob('{lib,spec,data,examples}/**/**/*') +
     %w(prawn-icon.gemspec Gemfile Rakefile) +
     %w(README.md CHANGELOG.md) +
     %w(COPYING LICENSE GPLv2 GPLv3)
