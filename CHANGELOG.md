@@ -1,3 +1,7 @@
+# Master
+
+- Updated FontAwesome from v4.3.0 to v4.4.0. See [changelog](http://fontawesome.io/icons#new).
+
 # 0.7.1 - August 4, 2015
 
 - Moved the internal font directory from `fonts` to `data/fonts` for consistency between Prawn-related gems [#16](https://github.com/jessedoyle/prawn-icon/issues/16).
