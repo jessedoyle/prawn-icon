@@ -1,4 +1,4 @@
-# Master
+# 1.0.0 - September 9, 2015
 
 - *(breaking change)* Updated Octicons from v2.4.1 to v3.1.0.
 - The following icons were removed:
@@ -9,6 +9,7 @@
   - `octicon-steps`
   - `octicon-podium`
   - `octicon-timer`
+  - `octicon-hourglass`
   - all `octicon-alignment` icons
   - all `octicon-move` icons
   - all `octicon-playback` icons
