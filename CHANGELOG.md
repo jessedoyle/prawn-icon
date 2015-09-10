@@ -1,5 +1,24 @@
 # Master
 
+- *(breaking change)* Updated Octicons from v2.4.1 to v3.1.0.
+- The following icons were removed:
+  - `octicon-microsope`
+  - `octicon-beer`
+  - `octicon-split`
+  - `octicon-puzzle`
+  - `octicon-steps`
+  - `octicon-podium`
+  - `octicon-timer`
+  - all `octicon-alignment` icons
+  - all `octicon-move` icons
+  - all `octicon-playback` icons
+  - all `octicon-jump` icons
+- The following icons were added:
+  - `octicon-beaker`
+  - `octicon-bell`
+  - `octicon-desktop-download`
+  - `octicon-watch`
+  - `octicon-shield`
 - Updated FontAwesome from v4.3.0 to v4.4.0. See [changelog](http://fontawesome.io/icons#new).
 
 # 0.7.1 - August 4, 2015
