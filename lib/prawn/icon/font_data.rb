@@ -79,14 +79,12 @@ module Prawn
       end
 
       def unicode(key)
-        char = yaml[specifier][key]
-
-        unless char
-          raise Prawn::Errors::IconNotFound,
-                "Key: #{specifier}-#{key} not found"
+        yaml[specifier][key].tap do |char|
+          unless char
+            raise Prawn::Errors::IconNotFound,
+                  "Key: #{specifier}-#{key} not found"
+          end
         end
-
-        char
       end
 
       def keys
