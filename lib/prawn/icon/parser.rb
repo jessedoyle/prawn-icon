@@ -49,77 +49,69 @@ module Prawn
           icons   = keys_to_unicode(document, content, config)
           tags    = icon_tags(icons)
 
-          string.gsub(TAG_REGEX).with_index do |_, i|
-            tags[i]
-          end
+          string.gsub(TAG_REGEX).with_index { |_, i| tags[i] }
         end
 
         def config_from_tokens(tokens)
-          array = []
+          [].tap do |array|
+            tokens.each do |token|
+              # Skip the closing tag
+              next if token =~ /<\/icon>/i
+              icon = {}
 
-          tokens.each do |token|
-            # Skip the closing tag
-            next if token =~ /<\/icon>/i
-            icon = {}
+              # Convert [[1,2], [3,4]] to { :1 => 2, :3 => 4 }
+              attrs = token.scan(ATTR_REGEX).inject({}) do |k, v|
+                val = attr_hash(v)
+                k.merge!(val)
+              end
 
-            # Convert [[1,2], [3,4]] to { :1 => 2, :3 => 4 }
-            attrs = token.scan(ATTR_REGEX).inject({}) do |k, v|
-              val = attr_hash(v)
-              k.merge!(val)
+              icon.merge!(attrs)
+              array << icon
             end
-
-            icon.merge!(attrs)
-            array << icon
           end
-
-          array
         end
 
         def icon_tags(icons)
-          tags = []
+          [].tap do |tags|
+            icons.each do |icon|
+              # Mandatory
+              content = icon[:content]
+              set     = icon[:set]
 
-          icons.each do |icon|
-            # Mandatory
-            content = icon[:content]
-            set     = icon[:set]
+              # Optional
+              color = icon[:color]
+              size  = icon[:size]
 
-            # Optional
-            color = icon[:color]
-            size  = icon[:size]
+              opening = "<font name=\"#{set}\""
 
-            opening = "<font name=\"#{set}\""
+              unless color || size
+                tags  << "#{opening}>#{content}</font>"
+                next
+              end
 
-            unless color || size
-              tags  << "#{opening}>#{content}</font>"
-              next
+              opening += " size=\"#{size}\"" if size
+              content = "<color rgb=\"#{color}\">#{content}</color>" if color
+
+              opening += '>'
+              tags << "#{opening}#{content}</font>"
             end
-
-            opening += " size=\"#{size}\"" if size
-            content = "<color rgb=\"#{color}\">#{content}</color>" if color
-
-            opening += '>'
-            tags << "#{opening}#{content}</font>"
           end
-
-          tags
         end
 
         def keys_to_unicode(document, content, config)
-          icons = []
-
-          content.each_with_index do |icon, index|
-            options ||= {}
-            options = config[index] if config.any?
-            info = {
-              set:     FontData.specifier_from_key(icon),
-              size:    options[:size],
-              color:   options[:color],
-              content: FontData.unicode_from_key(document, icon)
-            }
-            icons << info
+          [].tap do |icons|
+            content.each_with_index do |icon, index|
+              options ||= {}
+              options = config[index] if config.any?
+              info = {
+                set:     FontData.specifier_from_key(icon),
+                size:    options[:size],
+                color:   options[:color],
+                content: FontData.unicode_from_key(document, icon)
+              }
+              icons << info
+            end
           end
-
-          icons
         end
 
         private

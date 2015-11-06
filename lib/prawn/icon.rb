@@ -78,9 +78,7 @@ module Prawn
       #   inline_format: true
       #
       def icon(key, opts = {})
-        i = make_icon(key, opts)
-        i.render
-        i
+        make_icon(key, opts).tap(&:render)
       end
 
       # Initialize a new icon object, but do
