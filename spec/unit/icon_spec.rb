@@ -98,7 +98,7 @@ describe Prawn::Icon do
         pdf = create_pdf
         icon = Prawn::Icon.new 'fa-arrows', pdf
 
-        expect(valid_unicode?(icon.unicode)).to be_true
+        expect(valid_unicode?(icon.unicode)).to be true
       end
     end
 

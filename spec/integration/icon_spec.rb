@@ -120,7 +120,7 @@ describe Prawn::Icon::Interface do
 
         expect(icon.class).to eq(Hash)
         expect(icon[:content]).to eq('<font name="fa"></font>')
-        expect(icon[:inline_format]).to be_true
+        expect(icon[:inline_format]).to be true
       end
 
       it 'should ignore all other tags' do
@@ -130,7 +130,7 @@ describe Prawn::Icon::Interface do
 
         expect(icon.class).to eq(Hash)
         expect(icon[:content]).to eq(a[0])
-        expect(icon[:inline_format]).to be_true
+        expect(icon[:inline_format]).to be true
       end
 
       context 'multiple icons' do
@@ -142,7 +142,7 @@ describe Prawn::Icon::Interface do
 
           expect(icon.class).to eq(Hash)
           expect(icon[:content]).to eq(out)
-          expect(icon[:inline_format]).to be_true
+          expect(icon[:inline_format]).to be true
         end
       end
     end

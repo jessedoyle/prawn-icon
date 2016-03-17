@@ -60,7 +60,7 @@ describe Prawn::Icon::FontData do
       unicode = Prawn::Icon::FontData.unicode_from_key(pdf, 'fa-arrows')
       valid = unicode.force_encoding('UTF-8').valid_encoding?
 
-      expect(valid).to be_true
+      expect(valid).to be true
     end
   end
 
@@ -95,7 +95,7 @@ describe Prawn::Icon::FontData do
       data = Prawn::Icon::FontData.new(pdf)
       version = data.font_version
 
-      expect(version.is_a? String).to be_true
+      expect(version.is_a? String).to be true
     end
   end
 
@@ -116,7 +116,7 @@ describe Prawn::Icon::FontData do
       data = Prawn::Icon::FontData.new(pdf)
       ret_val = data.load_fonts(pdf)
 
-      expect(ret_val.is_a? Prawn::Icon::FontData).to be_true
+      expect(ret_val.is_a? Prawn::Icon::FontData).to be true
     end
   end
 
@@ -148,7 +148,7 @@ describe Prawn::Icon::FontData do
       unicode = data.unicode('arrows')
       valid = unicode.force_encoding('UTF-8').valid_encoding?
 
-      expect(valid).to be_true
+      expect(valid).to be true
     end
 
     it 'should raise an error if unable to match a key' do
@@ -167,7 +167,7 @@ describe Prawn::Icon::FontData do
       keys = data.keys
 
       expect(keys).not_to be_empty
-      expect(keys.first.is_a? String).to be_true
+      expect(keys.first.is_a? String).to be true
     end
 
     it 'should not contain the version as a key' do
@@ -175,7 +175,7 @@ describe Prawn::Icon::FontData do
       data = Prawn::Icon::FontData.new(pdf, set: :fa)
       keys = data.keys
 
-      expect(keys.include?('__font_version__')).to be_false
+      expect(keys.include?('__font_version__')).to be false
     end
   end
 
@@ -190,11 +190,11 @@ describe Prawn::Icon::FontData do
       inner_value = mapping.values.last
       proc = Proc.new { inner_value.force_encoding('UTF-8').valid_encoding? }
 
-      expect(yaml.is_a? Hash).to be_true
+      expect(yaml.is_a? Hash).to be true
       expect(key).to eq('fa')
-      expect(inner_key.is_a? String).to be_true
-      expect(inner_value.is_a? String).to be_true
-      expect(proc).to be_true
+      expect(inner_key.is_a? String).to be true
+      expect(inner_value.is_a? String).to be true
+      expect(proc.call).to be true
     end
   end
 end

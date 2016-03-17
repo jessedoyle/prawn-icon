@@ -85,7 +85,7 @@ module Prawn
               opening = "<font name=\"#{set}\""
 
               unless color || size
-                tags  << "#{opening}>#{content}</font>"
+                tags << "#{opening}>#{content}</font>"
                 next
               end
 
