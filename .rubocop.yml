@@ -9,3 +9,11 @@ SignalException:
   EnforcedStyle: only_raise
 Documentation:
   Enabled: false
+RegexpLiteral:
+  Enabled: false
+SpaceAroundOperators:
+  Enabled: false
+RedundantMerge:
+  Enabled: false
+FirstParameterIndentation:
+  Enabled: false

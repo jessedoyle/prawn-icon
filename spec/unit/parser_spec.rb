@@ -137,7 +137,7 @@ describe Prawn::Icon::Parser do
       icons = Prawn::Icon::Parser.keys_to_unicode(pdf, content, config)
       icon = icons.first[:content]
 
-      expect(valid_unicode?(icon)).to be_true
+      expect(valid_unicode?(icon)).to be true
     end
 
     it 'should return a single array containing attr hash of defaults' do

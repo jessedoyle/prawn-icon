@@ -1,3 +1,9 @@
+# 1.1.0 - March 16, 2016
+
+- Update FontAwesome from v4.4.0 to v4.5.0. See [changelog](http://fontawesome.io/icons#new).
+- Refactor specs to use `expect(foo).to be true` over `expect(foo).to be_true`.
+- Update development dependencies to latest.
+
 # 1.0.0 - September 9, 2015
 
 - *(breaking change)* Updated Octicons from v2.4.1 to v3.1.0.
