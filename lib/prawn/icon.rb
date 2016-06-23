@@ -119,10 +119,20 @@ module Prawn
       #   underlying text call.
       #
       def inline_icon(text, opts = {})
-        parsed    = Icon::Parser.format(self, text)
-        content   = Text::Formatted::Parser.format(parsed)
-        opts.merge!(inline_format: true, document: self)
-        Text::Formatted::Box.new(content, opts)
+        parsed = Icon::Parser.format(self, text)
+        content = Text::Formatted::Parser.format(parsed)
+        opts.merge!(
+          inline_format: true,
+          document: self,
+          at: [bounds.left, cursor]
+        )
+        Text::Formatted::Box.new(content, opts).tap do |box|
+          box.render(dry_run: true)
+          self.y -= box.height
+          unless opts.fetch(:final_gap, true)
+            self.y -= box.line_gap + box.leading
+          end
+        end
       end
 
       # Initialize a new Prawn::Icon, but don't render
