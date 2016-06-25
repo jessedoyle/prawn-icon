@@ -119,10 +119,14 @@ module Prawn
       #   underlying text call.
       #
       def inline_icon(text, opts = {})
-        parsed    = Icon::Parser.format(self, text)
-        content   = Text::Formatted::Parser.format(parsed)
-        opts.merge!(inline_format: true, document: self)
-        Text::Formatted::Box.new(content, opts)
+        parsed = Icon::Parser.format(self, text)
+        content = Text::Formatted::Parser.format(parsed)
+        box_options = opts.merge(
+          inline_format: true,
+          document: self,
+          at: [bounds.left, cursor]
+        )
+        icon_box(content, box_options)
       end
 
       # Initialize a new Prawn::Icon, but don't render
@@ -170,6 +174,18 @@ module Prawn
           make_icon(key, opts).format_hash
         end
       end
+
+      private
+
+      def icon_box(content, opts = {}) # :nodoc:
+        Text::Formatted::Box.new(content, opts).tap do |box|
+          box.render(dry_run: true)
+          self.y -= box.height
+          unless opts.fetch(:final_gap, true)
+            self.y -= box.line_gap + box.leading
+          end
+        end
+      end
     end
 
     attr_reader :set, :unicode
@@ -200,7 +216,7 @@ module Prawn
 
     private
 
-    def strip_specifier_from_key(key) #:nodoc:
+    def strip_specifier_from_key(key) # :nodoc:
       reg = Regexp.new "#{@data.specifier}-"
       key.sub(reg, '') # Only one specifier
     end

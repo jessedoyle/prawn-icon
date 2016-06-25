@@ -1,3 +1,7 @@
+# 1.1.1 - Jun 24, 2016
+
+- BUGFIX: Inline icons now properly render at the correct cursor position with the correct line gap and box leading[#24](https://github.com/jessedoyle/prawn-icon/issues/24). Thanks @ToniTornado for reporting!
+
 # 1.1.0 - March 16, 2016
 
 - Update FontAwesome from v4.4.0 to v4.5.0. See [changelog](http://fontawesome.io/icons#new).

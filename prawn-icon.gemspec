@@ -27,9 +27,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency('pdf-inspector', '~> 1.2.1')
   spec.add_development_dependency('rspec', '~> 3.4.0')
   spec.add_development_dependency('rubocop', '~> 0.38.0')
-  spec.add_development_dependency('mocha')
   spec.add_development_dependency('rake')
-  spec.add_development_dependency('simplecov')
   spec.add_development_dependency('pdf-reader', '~> 1.4')
 
   spec.description = <<-END_DESC
