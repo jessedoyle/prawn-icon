@@ -40,6 +40,21 @@ describe Prawn::Icon::Interface do
           expect(text1.strings.first).to eq("\uf047")
           expect(text2.strings.first).to eq("\uf047")
         end
+
+        it 'renders the icon at the proper cursor position (#24)' do
+          icon_text = '<icon>fa-info-circle</icon> icon here!'
+          pdf = create_pdf
+          pdf.text 'Start'
+          pdf.move_down 10
+          pdf.text 'More'
+          pdf.move_down 20
+          icon = pdf.icon icon_text, inline_format: true
+          pdf.move_down 30
+          pdf.text 'End'
+
+          expect(icon.at.first).to eq(0)
+          expect(icon.at.last.round).to eq(734)
+        end
       end
 
       context 'without options' do
