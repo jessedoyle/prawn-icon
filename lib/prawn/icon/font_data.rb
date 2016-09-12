@@ -34,7 +34,7 @@ module Prawn
 
         def specifier_from_key(key)
           if key.nil? || key == ''
-            raise Prawn::Errors::IconKeyEmpty,
+            raise Errors::IconKeyEmpty,
                   'Icon key provided was nil.'
           end
 
@@ -63,15 +63,15 @@ module Prawn
       end
 
       def path
-        ttf   = File.join(Icon::FONTDIR, @set.to_s, '*.ttf')
-        fonts = Dir[ttf]
+        ttf  = File.join(Icon::Base::FONTDIR, @set.to_s, '*.ttf')
+        font = Dir[ttf].first
 
-        if fonts.empty?
+        if font.nil?
           raise Prawn::Errors::UnknownFont,
                 "Icon font not found for set: #{@set}"
         end
 
-        @path ||= fonts.first
+        @path ||= font
       end
 
       def specifier
@@ -81,7 +81,7 @@ module Prawn
       def unicode(key)
         yaml[specifier][key].tap do |char|
           unless char
-            raise Prawn::Errors::IconNotFound,
+            raise Errors::IconNotFound,
                   "Key: #{specifier}-#{key} not found"
           end
         end
