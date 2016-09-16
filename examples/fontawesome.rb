@@ -5,7 +5,7 @@ require_relative 'example_helper'
 
 Prawn::Document.generate('fontawesome.pdf') do
   deja_path = File.join \
-    Prawn::Icon::FONTDIR, 'DejaVuSans.ttf'
+    Prawn::Icon::Base::FONTDIR, 'DejaVuSans.ttf'
 
   font_families.update({
     'deja' => { normal: deja_path }

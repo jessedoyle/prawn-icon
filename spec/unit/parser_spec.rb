@@ -7,10 +7,11 @@
 require 'spec_helper'
 
 describe Prawn::Icon::Parser do
+  let(:pdf) { create_pdf }
+
   describe '::format' do
     it 'should return a raw prawn-formatted string on valid input' do
       string = '<icon>fa-arrows</icon>'
-      pdf = create_pdf
       formatted = Prawn::Icon::Parser.format(pdf, string)
       match = "<font name=\"fa\"></font>"
 
@@ -23,7 +24,6 @@ describe Prawn::Icon::Parser do
       Here's some sample text.
       <i>more text</i>
       EOS
-      pdf = create_pdf
       formatted = Prawn::Icon::Parser.format(pdf, string)
 
       expect(formatted).to eq(string)
@@ -31,7 +31,6 @@ describe Prawn::Icon::Parser do
 
     it 'should return the empty string if given the empty string' do
       string = ''
-      pdf = create_pdf
       formatted = Prawn::Icon::Parser.format(pdf, string)
 
       expect(formatted).to be_empty
@@ -39,7 +38,6 @@ describe Prawn::Icon::Parser do
 
     it 'should raise an error when an icon key is invalid' do
       string = '<icon>an invalid key</icon>'
-      pdf = create_pdf
       proc = Proc.new { Prawn::Icon::Parser.format(pdf, string) }
 
       expect(proc).to raise_error(Prawn::Errors::UnknownFont)
@@ -47,10 +45,9 @@ describe Prawn::Icon::Parser do
 
     it 'should raise an error when an icon is not found for valid set' do
       string = '<icon>fa-__INVALID__</icon>'
-      pdf = create_pdf
       proc = Proc.new { Prawn::Icon::Parser.format(pdf, string) }
 
-      expect(proc).to raise_error(Prawn::Errors::IconNotFound)
+      expect(proc).to raise_error(Prawn::Icon::Errors::IconNotFound)
     end
   end
 
@@ -122,7 +119,6 @@ describe Prawn::Icon::Parser do
       string = ''
       config = []
       content = contentize_string(string)
-      pdf = create_pdf
       icons = Prawn::Icon::Parser.keys_to_unicode(pdf, content, config)
 
       expect(icons).to be_empty
@@ -133,7 +129,6 @@ describe Prawn::Icon::Parser do
       tokens = tokenize_string(string)
       content = contentize_string(string)
       config = Prawn::Icon::Parser.config_from_tokens(tokens)
-      pdf = create_pdf
       icons = Prawn::Icon::Parser.keys_to_unicode(pdf, content, config)
       icon = icons.first[:content]
 
@@ -146,7 +141,6 @@ describe Prawn::Icon::Parser do
       tokens = tokenize_string(string)
       content = contentize_string(string)
       config = Prawn::Icon::Parser.config_from_tokens(tokens)
-      pdf = create_pdf
       icons = Prawn::Icon::Parser.keys_to_unicode(pdf, content, config)
       icon = icons.first
 
@@ -164,7 +158,6 @@ describe Prawn::Icon::Parser do
       tokens = tokenize_string(string)
       content = contentize_string(string)
       config = Prawn::Icon::Parser.config_from_tokens(tokens)
-      pdf = create_pdf
       icons = Prawn::Icon::Parser.keys_to_unicode(pdf, content, config)
       first = icons.first
       second = icons[1]
@@ -179,40 +172,50 @@ describe Prawn::Icon::Parser do
   end
 
   describe '::icon_tags' do
-    it 'should return valid input as prawn formatted text tags wrapping color tags' do
-      icons = [
-        { set: :fa, color: 'CCCCCC', content: "\uf001" }
-      ]
-      tags = Prawn::Icon::Parser.icon_tags(icons)
-      match = "<font name=\"fa\"><color rgb=\"CCCCCC\">\uf001</color></font>"
+    let(:tags) { Prawn::Icon::Parser.icon_tags(icons) }
 
-      expect(tags.size).to eq(1)
-      expect(tags.first).to eq(match)
+    context 'with color attribute' do
+      let(:icons) do
+        [
+          { set: :fa, color: 'CCCCCC', content: "\uf001" }
+        ]
+      end
+
+      it 'should return valid input as prawn formatted text tags wrapping color tags' do
+        match = "<font name=\"fa\"><color rgb=\"CCCCCC\">\uf001</color></font>"
+
+        expect(tags).to eq([match])
+      end
     end
 
-    it 'should return valid input as prawn formatted text tags without color' do
-      icons = [
-        { set: :fa, content: "\uf001" }
-      ]
-      tags = Prawn::Icon::Parser.icon_tags(icons)
-      match = "<font name=\"fa\">\uf001</font>"
+    context 'without the color attribute' do
+      let(:icons) do
+        [
+          { set: :fa, content: "\uf001" }
+        ]
+      end
 
-      expect(tags.size).to eq(1)
-      expect(tags.first).to eq(match)
+      it 'should return valid input as prawn formatted text tags without color' do
+        match = "<font name=\"fa\">\uf001</font>"
+
+        expect(tags).to eq([match])
+      end
     end
 
-    it 'should be capable of handling multiple icon fonts' do
-      icons = [
-        { set: :fa, content: "\uf001" },
-        { set: :fi, content: "\uf001" }
-      ]
-      tags = Prawn::Icon::Parser.icon_tags(icons)
-      match1 = "<font name=\"fa\">\uf001</font>"
-      match2 = "<font name=\"fi\">\uf001</font>"
+    context 'with multiple icon fonts' do
+      let(:icons) do
+        [
+          { set: :fa, content: "\uf001" },
+          { set: :fi, content: "\uf001" }
+        ]
+      end
 
-      expect(tags.size).to eq(2)
-      expect(tags[0]).to eq(match1)
-      expect(tags[1]).to eq(match2)
+      it 'should be capable of handling multiple icon fonts' do
+        match1 = "<font name=\"fa\">\uf001</font>"
+        match2 = "<font name=\"fi\">\uf001</font>"
+
+        expect(tags).to eq([match1, match2])
+      end
     end
   end
 end

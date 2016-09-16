@@ -7,26 +7,26 @@
 require 'spec_helper'
 
 describe Prawn::Icon do
+  let(:errors) { described_class::Errors }
+  let(:pdf) { create_pdf }
+
   describe '#initialize' do
     context 'valid icon family specifier' do
       it 'should be capable of creating icon instances' do
-        pdf = create_pdf
         icon = Prawn::Icon.new 'fa-arrows', pdf
 
         expect(icon.unicode).to eq("\uf047")
       end
 
       it 'should raise an error if icon key is not found' do
-        pdf = create_pdf
         proc = Proc.new { Prawn::Icon.new 'fa-__INVALID__', pdf }
 
-        expect(proc).to raise_error(Prawn::Errors::IconNotFound)
+        expect(proc).to raise_error(errors::IconNotFound)
       end
     end
 
     context 'invalid icon specifier' do
       it 'should raise an error' do
-        pdf = create_pdf
         proc = Proc.new { pdf.icon '__INVALID__  some text' }
 
         expect(proc).to raise_error(Prawn::Errors::UnknownFont)
@@ -44,7 +44,6 @@ describe Prawn::Icon do
 
   describe '#format_hash' do
     it 'should add :font and :content keys' do
-      pdf = create_pdf
       icon = Prawn::Icon.new 'fa-arrows', pdf
       hash = icon.format_hash
 
@@ -53,7 +52,6 @@ describe Prawn::Icon do
     end
 
     it 'should rename key :color to :text_color' do
-      pdf = create_pdf
       icon = Prawn::Icon.new 'fa-arrows', pdf, color: '0099ff'
       hash = icon.format_hash
 
@@ -64,7 +62,6 @@ describe Prawn::Icon do
 
   describe '#render' do
     it 'should render an icon to the page' do
-      pdf = create_pdf
       pdf.icon('fa-arrows').render
       text = PDF::Inspector::Text.analyze(pdf.render)
 
@@ -75,7 +72,6 @@ describe Prawn::Icon do
   describe '#set' do
     context 'with dashes in key' do
       it 'should return the set as a symbol from key' do
-        pdf = create_pdf
         set = Prawn::Icon.new('fa-arrows', pdf).set
 
         expect(set).to eq(:fa)
@@ -84,7 +80,6 @@ describe Prawn::Icon do
 
     context 'without dashes in key' do
       it 'raise an error about invalid keys' do
-        pdf = create_pdf
         proc = Proc.new { Prawn::Icon.new 'some invalid key', pdf }
 
         expect(proc).to raise_error(Prawn::Errors::UnknownFont)
@@ -95,7 +90,6 @@ describe Prawn::Icon do
   describe '#unicode' do
     context 'valid icon key' do
       it 'should return a unicode character' do
-        pdf = create_pdf
         icon = Prawn::Icon.new 'fa-arrows', pdf
 
         expect(valid_unicode?(icon.unicode)).to be true
@@ -104,10 +98,9 @@ describe Prawn::Icon do
 
     context 'invalid icon key' do
       it 'should raise IconNotFound' do
-        pdf = create_pdf
         proc = Proc.new { Prawn::Icon.new 'fa-__INVALID__', pdf }
 
-        expect(proc).to raise_error(Prawn::Errors::IconNotFound)
+        expect(proc).to raise_error(errors::IconNotFound)
       end
     end
   end

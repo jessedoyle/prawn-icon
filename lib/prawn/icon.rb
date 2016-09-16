@@ -6,21 +6,11 @@
 #
 # This is free software. Please see the LICENSE and COPYING files for details.
 
-require 'prawn'
+require_relative 'icon/base'
 require_relative 'icon/font_data'
 require_relative 'icon/parser'
 
 module Prawn
-  module Errors
-    # Error raised when an icon glyph is not found
-    #
-    IconNotFound = Class.new(StandardError)
-
-    # Error raised when an icon key is not provided
-    #
-    IconKeyEmpty = Class.new(StandardError)
-  end
-
   # Easy icon font usage within Prawn. Currently
   # supported icon fonts include: FontAwesome,
   # Zurb Foundicons, GitHub Octicons, as well as
@@ -34,7 +24,7 @@ module Prawn
   # rule, included icon keys should match the keys from
   # the font provider. The icon key mapping is specified
   # in the font's +legend_file+, which is a +YAML+ file
-  # located in Prawn::Icon::FONTDIR/font/font.yml.
+  # located in Prawn::Icon::Base::FONTDIR/font/font.yml.
   #
   # Prawn::Icon::
   #   Houses the methods and interfaces necessary for
@@ -53,8 +43,7 @@ module Prawn
   #   to Prawn's internal formatted text parser.
   #
   class Icon
-    FONTDIR = File.join \
-      File.expand_path('../../..', __FILE__), 'data/fonts'
+    FONTDIR = Icon::Base::FONTDIR
 
     module Interface
       # Set up and draw an icon on this document. This

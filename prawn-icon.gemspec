@@ -25,7 +25,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency('prawn', '>= 1.1.0', '< 3.0.0')
 
   spec.add_development_dependency('pdf-inspector', '~> 1.2.1')
-  spec.add_development_dependency('rspec', '~> 3.4.0')
+  spec.add_development_dependency('rspec', '~> 3.5.0')
   spec.add_development_dependency('rubocop', '~> 0.38.0')
   spec.add_development_dependency('rake')
   spec.add_development_dependency('pdf-reader', '~> 1.4')

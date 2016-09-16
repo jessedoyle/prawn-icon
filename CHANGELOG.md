@@ -1,3 +1,22 @@
+# 1.2.0 - Sept 12, 2016
+
+- Update FontAwesome from v4.5.0 to v4.6.3. See [changelog](http://fontawesome.io/icons#new).
+- Refactor spec files to remove duplication using `let` blocks.
+- Break internal dependencies to `Prawn::Icon::Base` to allow selective code requires.
+  e.g. (to require only `prawn/icon/font_data`):
+
+  ```ruby
+    require 'prawn/icon/base'
+    require 'prawn/icon/font_data'
+  ```
+
+  This resolves issue [#27](https://github.com/jessedoyle/prawn-icon/issues/27). Thanks @mojavelinux for reporting!
+- Introduce `Prawn::Icon::Errors` to contain internal exception classes.
+- `Prawn::Icon::FONTDIR` is now an alias to `Prawn::Icon::Base::FONTDIR` for compatibilty.
+- Add basic spec files for `Prawn::Icon::Base` and separate exception classes.
+- Minor backwards-compatible code refactor of `Prawn::Icon::FontData` for readability.
+- Add a spec to test inline_icon with final_gap: false to achieve 100% coverage.
+
 # 1.1.1 - Jun 24, 2016
 
 - BUGFIX: Inline icons now properly render at the correct cursor position with the correct line gap and box leading[#24](https://github.com/jessedoyle/prawn-icon/issues/24). Thanks @ToniTornado for reporting!
