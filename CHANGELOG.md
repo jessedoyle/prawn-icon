@@ -1,3 +1,9 @@
+# 1.3.0 - Oct 15, 2016
+
+- Update rubocop developement dependency (to `0.44.1`).
+- Add `simplecov` as a development dependency and require 100% coverage.
+- Break out `Prawn::Icon::Interface` into its own file. This resolves issue [#27](https://github.com/jessedoyle/prawn-icon/issues/27).
+
 # 1.2.0 - Sept 12, 2016
 
 - Update FontAwesome from v4.5.0 to v4.6.3. See [changelog](http://fontawesome.io/icons#new).
