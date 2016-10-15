@@ -1,6 +1,7 @@
 basedir = File.expand_path(File.dirname(__FILE__))
 require "#{basedir}/lib/prawn/icon/version"
 
+# rubocop:disable Metrics/BlockLength
 Gem::Specification.new do |spec|
   spec.name     = 'prawn-icon'
   spec.version  = Prawn::Icon::VERSION
@@ -26,9 +27,10 @@ Gem::Specification.new do |spec|
 
   spec.add_development_dependency('pdf-inspector', '~> 1.2.1')
   spec.add_development_dependency('rspec', '~> 3.5.0')
-  spec.add_development_dependency('rubocop', '~> 0.38.0')
+  spec.add_development_dependency('rubocop', '~> 0.44.1')
   spec.add_development_dependency('rake')
   spec.add_development_dependency('pdf-reader', '~> 1.4')
+  spec.add_development_dependency('simplecov', '~> 0.12')
 
   spec.description = <<-END_DESC
   Prawn::Icon provides various icon fonts including

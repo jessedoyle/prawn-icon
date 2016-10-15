@@ -3,6 +3,10 @@
 # Copyright October 2014, Jesse Doyle. All rights reserved.
 #
 # This is free software. Please see the LICENSE and COPYING files for details.
+#
+#
+require 'simplecov'
+SimpleCov.start
 
 require "bundler"
 Bundler.setup
