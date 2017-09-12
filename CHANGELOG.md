@@ -1,3 +1,13 @@
+# 1.4.0 - Sept 11, 2017
+
+- Update dependency gems to latest version.
+- Fix `rubocop` config to show cop names as well as increase the ABC complexity slightly.
+- Add internal tooling to assist with the SCSS => YAML mappings of FontAwesome and PaymentFont.
+- Update FontAwesome to `v4.7.0` from `v4.6.3`. See [changelog](http://fontawesome.io/icons#new).
+- Update PaymentFont to `v1.2.5` from `v1.1.2`. See [icons](https://paymentfont.com/#icons).
+- Update Octicons from to `v4.4.0` from `v3.1.0`. NOTE: As Octicons have moved from font-based icons to SVG after this version, this will be the final octicon version in `prawn/icon`. See the [wiki](https://github.com/blog/2112-delivering-octicons-with-svg).
+- Fix rubocop warnings for whitespace.
+
 # 1.3.0 - Oct 15, 2016
 
 - Update rubocop developement dependency (to `0.44.1`).

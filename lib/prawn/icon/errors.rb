@@ -1,3 +1,11 @@
+# encoding: utf-8
+#
+# errors.rb - Prawn::Icon standard errors.
+#
+# Copyright September 2016, Jesse Doyle. All rights reserved.
+#
+# This is free software. Please see the LICENSE and COPYING files for details.
+
 module Prawn
   class Icon
     module Errors
