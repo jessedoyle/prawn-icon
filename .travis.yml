@@ -3,9 +3,9 @@ before_install:
   - gem install bundler
   - bundle --version
 rvm:
-  - 2.1.0-p0
   - 2.2.4
   - 2.3.0
+  - 2.4.1
   - jruby-9.0.5.0
   - rbx-3.19
 gemfile:

@@ -1,4 +1,5 @@
 AllCops:
+  DisplayCopNames: true
   Exclude:
     - 'examples/**/*'
     - 'spec/**/*'
@@ -16,4 +17,8 @@ SpaceAroundOperators:
 RedundantMerge:
   Enabled: false
 FirstParameterIndentation:
+  Enabled: false
+Metrics/AbcSize:
+  Max: 20
+Layout/EmptyLineAfterMagicComment:
   Enabled: false
