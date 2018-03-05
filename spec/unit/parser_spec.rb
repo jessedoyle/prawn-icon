@@ -11,16 +11,16 @@ describe Prawn::Icon::Parser do
 
   describe '::format' do
     it 'should return a raw prawn-formatted string on valid input' do
-      string = '<icon>fa-arrows</icon>'
+      string = '<icon>far-address-book</icon>'
       formatted = Prawn::Icon::Parser.format(pdf, string)
-      match = "<font name=\"fa\"></font>"
+      match = '<font name="far"></font>'
 
       expect(formatted).to eq(match)
     end
 
     it 'should return unchanged if no icon tags are found' do
       string = <<-EOS
-      <link href="#">test</link>
+      <link href='#'>test</link>
       Here's some sample text.
       <i>more text</i>
       EOS
@@ -44,7 +44,7 @@ describe Prawn::Icon::Parser do
     end
 
     it 'should raise an error when an icon is not found for valid set' do
-      string = '<icon>fa-__INVALID__</icon>'
+      string = '<icon>far-__INVALID__</icon>'
       proc = Proc.new { Prawn::Icon::Parser.format(pdf, string) }
 
       expect(proc).to raise_error(Prawn::Icon::Errors::IconNotFound)
@@ -53,7 +53,7 @@ describe Prawn::Icon::Parser do
 
   describe '::config_from_tokens' do
     it 'should handle attrs with double quotes' do
-      string = '<icon size="20">fa-arrows</icon>'
+      string = '<icon size="20">far-address-book</icon>'
       tokens = tokenize_string(string)
       config = Prawn::Icon::Parser.config_from_tokens(tokens)
       inner = config.first
@@ -62,7 +62,7 @@ describe Prawn::Icon::Parser do
     end
 
     it 'should handle attrs with single quotes' do
-      string = "<icon size='20'>fa-arrows</icon>"
+      string = '<icon size="20">far-address-book</icon>'
       tokens = tokenize_string(string)
       config = Prawn::Icon::Parser.config_from_tokens(tokens)
       inner = config.first
@@ -71,7 +71,7 @@ describe Prawn::Icon::Parser do
     end
 
     it 'should handle both single/double quotes in same string' do
-      string = '<icon color="0099FF" size=\'20\'>fa-arrows</icon>'
+      string = '<icon color="0099FF" size=\'20\'>far-address-book</icon>'
       tokens = tokenize_string(string)
       config = Prawn::Icon::Parser.config_from_tokens(tokens)
       inner = config.first
@@ -81,7 +81,7 @@ describe Prawn::Icon::Parser do
     end
 
     it 'should return an array containing only an empty hash' do
-      string = '<icon>fa-arrows</icon>'
+      string = '<icon>far-address-book</icon>'
       tokens = tokenize_string(string)
       config = Prawn::Icon::Parser.config_from_tokens(tokens)
       inner = config.first
@@ -91,7 +91,7 @@ describe Prawn::Icon::Parser do
     end
 
     it 'should return an array containing a single hash of attrs' do
-      string = '<icon size="12" color="CCCCCC">fa-arrows</icon>'
+      string = '<icon size="12" color="CCCCCC">far-address-book</icon>'
       tokens = tokenize_string(string)
       config = Prawn::Icon::Parser.config_from_tokens(tokens)
       inner = config.first
@@ -103,9 +103,9 @@ describe Prawn::Icon::Parser do
 
     it 'should return an array containing as many hashes as icons' do
       string = <<-EOS
-      <icon>fa-arrows</icon>
-      <icon>fa-arrows</icon>
-      <icon>fa-arrows</icon>
+      <icon>far-address-book</icon>
+      <icon>far-address-book</icon>
+      <icon>far-address-book</icon>
       EOS
       tokens = tokenize_string(string)
       config = Prawn::Icon::Parser.config_from_tokens(tokens)
@@ -125,7 +125,7 @@ describe Prawn::Icon::Parser do
     end
 
     it 'should return an array with unicode content' do
-      string = '<icon>fa-arrows</icon>'
+      string = '<icon>far-address-book</icon>'
       tokens = tokenize_string(string)
       content = contentize_string(string)
       config = Prawn::Icon::Parser.config_from_tokens(tokens)
@@ -137,23 +137,23 @@ describe Prawn::Icon::Parser do
 
     it 'should return a single array containing attr hash of defaults' do
       # Hash must contain :set and :content by default
-      string = '<icon>fa-arrows</icon>'
+      string = '<icon>far-address-book</icon>'
       tokens = tokenize_string(string)
       content = contentize_string(string)
       config = Prawn::Icon::Parser.config_from_tokens(tokens)
       icons = Prawn::Icon::Parser.keys_to_unicode(pdf, content, config)
       icon = icons.first
 
-      expect(icon[:set]).to eq(:fa)
+      expect(icon[:set]).to eq(:far)
       expect(icon[:content]).not_to be_empty
     end
 
     it 'should handle strings with multiple icons/attrs combinations' do
       string = <<-EOS
-      <icon size="20">fa-arrows</icon>
+      <icon size='20'>far-address-book</icon>
       some filler text
-      <icon>fa-arrows</icon>
-      <icon size="8" color="0099FF">fa-arrows</icon>
+      <icon>far-address-book</icon>
+      <icon size='8' color='0099FF'>far-address-book</icon>
       EOS
       tokens = tokenize_string(string)
       content = contentize_string(string)
@@ -177,12 +177,12 @@ describe Prawn::Icon::Parser do
     context 'with color attribute' do
       let(:icons) do
         [
-          { set: :fa, color: 'CCCCCC', content: "\uf001" }
+          { set: :far, color: 'CCCCCC', content: '' }
         ]
       end
 
       it 'should return valid input as prawn formatted text tags wrapping color tags' do
-        match = "<font name=\"fa\"><color rgb=\"CCCCCC\">\uf001</color></font>"
+        match = '<font name="far"><color rgb="CCCCCC"></color></font>'
 
         expect(tags).to eq([match])
       end
@@ -191,12 +191,12 @@ describe Prawn::Icon::Parser do
     context 'without the color attribute' do
       let(:icons) do
         [
-          { set: :fa, content: "\uf001" }
+          { set: :far, content: '' }
         ]
       end
 
       it 'should return valid input as prawn formatted text tags without color' do
-        match = "<font name=\"fa\">\uf001</font>"
+        match = '<font name="far"></font>'
 
         expect(tags).to eq([match])
       end
@@ -205,14 +205,14 @@ describe Prawn::Icon::Parser do
     context 'with multiple icon fonts' do
       let(:icons) do
         [
-          { set: :fa, content: "\uf001" },
-          { set: :fi, content: "\uf001" }
+          { set: :far, content: '' },
+          { set: :fi, content: '\uf001' }
         ]
       end
 
       it 'should be capable of handling multiple icon fonts' do
-        match1 = "<font name=\"fa\">\uf001</font>"
-        match2 = "<font name=\"fi\">\uf001</font>"
+        match1 = '<font name="far"></font>'
+        match2 = '<font name="fi">\uf001</font>'
 
         expect(tags).to eq([match1, match2])
       end

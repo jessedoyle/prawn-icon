@@ -8,21 +8,21 @@ require 'spec_helper'
 
 describe Prawn::Icon::FontData do
   let(:pdf) { create_pdf }
-  let(:fontawesome) { Prawn::Icon::FontData.new(pdf, set: :fa) }
+  let(:fontawesome) { Prawn::Icon::FontData.new(pdf, set: :far) }
 
   before { Prawn::Icon::FontData.release_data }
 
   describe '#initialize' do
-    before { Prawn::Icon::FontData.new(pdf, set: :fa) }
+    before { Prawn::Icon::FontData.new(pdf, set: :far) }
 
     it 'should update font_families on initialization' do
-      expect(pdf.font_families['fa']).not_to be_nil
+      expect(pdf.font_families['far']).not_to be_nil
     end
   end
 
   describe '::load' do
     context 'specifier is a string' do
-      let(:data) { Prawn::Icon::FontData.load(pdf, 'fa') }
+      let(:data) { Prawn::Icon::FontData.load(pdf, 'far') }
 
       it 'should load the font' do
         expect(data).not_to be_nil
@@ -30,7 +30,7 @@ describe Prawn::Icon::FontData do
 
       it 'should only load a single object for multiple documents' do
         obj_id_1 = data.object_id
-        second = Prawn::Icon::FontData.load(pdf, 'fa')
+        second = Prawn::Icon::FontData.load(pdf, 'far')
         obj_id_2 = second.object_id
 
         expect(obj_id_1).to eq(obj_id_2)
@@ -38,7 +38,7 @@ describe Prawn::Icon::FontData do
     end
 
     context 'specifier is a symbol' do
-      let(:data) { Prawn::Icon::FontData.load(pdf, :fa) }
+      let(:data) { Prawn::Icon::FontData.load(pdf, :far) }
 
       it 'should load the font' do
         expect(data).not_to be_nil
@@ -48,9 +48,8 @@ describe Prawn::Icon::FontData do
 
   describe '::release_data' do
     it 'should remove all data references if requested' do
-      Prawn::Icon::FontData.load(pdf, :fa)
+      Prawn::Icon::FontData.load(pdf, :far)
       Prawn::Icon::FontData.load(pdf, :fi)
-      Prawn::Icon::FontData.load(pdf, :octicon)
       data = Prawn::Icon::FontData.release_data
 
       expect(data).to be_empty
@@ -59,7 +58,7 @@ describe Prawn::Icon::FontData do
 
   describe '::unicode_from_key' do
     it 'should provide a UTF-8 string for a valid key' do
-      unicode = Prawn::Icon::FontData.unicode_from_key(pdf, 'fa-arrows')
+      unicode = Prawn::Icon::FontData.unicode_from_key(pdf, 'far-address-book')
       valid = unicode.force_encoding('UTF-8').valid_encoding?
 
       expect(valid).to be true
@@ -68,8 +67,8 @@ describe Prawn::Icon::FontData do
 
   describe '::specifier_from_key' do
     it 'should provide the font specifier from a valid key' do
-      specifier = Prawn::Icon::FontData.specifier_from_key('fa-arrows')
-      expect(specifier).to eq(:fa)
+      specifier = Prawn::Icon::FontData.specifier_from_key('far-address-book')
+      expect(specifier).to eq(:far)
     end
 
     it 'should error when key is nil' do
@@ -129,13 +128,13 @@ describe Prawn::Icon::FontData do
     it 'should retrieve the string specifier from the yaml legend file' do
       specifier = fontawesome.specifier
 
-      expect(specifier).to eq('fa')
+      expect(specifier).to eq('far')
     end
   end
 
   describe '#unicode' do
     it 'should provide a valid UTF-8 encoded string for a valid key' do
-      unicode = fontawesome.unicode('arrows')
+      unicode = fontawesome.unicode('address-book')
       valid = unicode.force_encoding('UTF-8').valid_encoding?
 
       expect(valid).to be true
@@ -167,13 +166,13 @@ describe Prawn::Icon::FontData do
     it 'should return a hash with the specifier as the first key' do
       yaml = fontawesome.yaml
       key = yaml.keys.first
-      mapping = yaml['fa']
+      mapping = yaml['far']
       inner_key = mapping.keys.last
       inner_value = mapping.values.last
       proc = Proc.new { inner_value.force_encoding('UTF-8').valid_encoding? }
 
       expect(yaml).to be_a(Hash)
-      expect(key).to eq('fa')
+      expect(key).to eq('far')
       expect(inner_key).to be_a(String)
       expect(inner_value).to be_a(String)
       expect(proc.call).to be true

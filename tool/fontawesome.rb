@@ -7,20 +7,17 @@
 #
 # This is free software. Please see the LICENSE and COPYING files for details.
 
-require_relative 'scss/parser'
+require_relative 'fontawesome/converter'
 
-PREFIX = /fa-var-(?<key>.+):\s*"\\(?<unicode>.*)";/
-VERSION = /fa-version:\s*"(?<version>.*)"/
-
-puts 'Please enter in the path to the _variables.scss file:'
+puts 'Please enter the path to the icons.yml metadata file ' \
+'(i.e. fontawesome-free/advanced-options/icons.yml):'
 path = File.expand_path(gets.chomp)
-puts 'Enter the output file path:'
-output = File.expand_path(gets.chomp)
+output = File.expand_path('data/fonts')
+puts 'Please enter the font version:'
+version = gets.chomp
 
-SCSS::Parser.new(
-  prefix: PREFIX,
-  version: VERSION,
-  specifier: 'fa',
-  path: path,
-  output: output
+Fontawesome::Converter.new(
+  version: version,
+  output: output,
+  path: path
 )

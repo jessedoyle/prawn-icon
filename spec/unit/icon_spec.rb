@@ -13,13 +13,13 @@ describe Prawn::Icon do
   describe '#initialize' do
     context 'valid icon family specifier' do
       it 'should be capable of creating icon instances' do
-        icon = Prawn::Icon.new 'fa-arrows', pdf
+        icon = Prawn::Icon.new 'far-address-book', pdf
 
-        expect(icon.unicode).to eq("\uf047")
+        expect(icon.unicode).to eq('')
       end
 
       it 'should raise an error if icon key is not found' do
-        proc = Proc.new { Prawn::Icon.new 'fa-__INVALID__', pdf }
+        proc = Proc.new { Prawn::Icon.new 'far-__INVALID__', pdf }
 
         expect(proc).to raise_error(errors::IconNotFound)
       end
@@ -35,7 +35,7 @@ describe Prawn::Icon do
 
     context 'without a pdf object' do
       it 'should raise an ArgumentError' do
-        proc = Proc.new { Prawn::Icon.new('fa-arrows') }
+        proc = Proc.new { Prawn::Icon.new('far-address-book') }
 
         expect(proc).to raise_error(ArgumentError)
       end
@@ -44,15 +44,15 @@ describe Prawn::Icon do
 
   describe '#format_hash' do
     it 'should add :font and :content keys' do
-      icon = Prawn::Icon.new 'fa-arrows', pdf
+      icon = Prawn::Icon.new 'far-address-book', pdf
       hash = icon.format_hash
 
-      expect(hash[:font]).to eq('fa')
-      expect(hash[:content]).to eq("\uf047")
+      expect(hash[:font]).to eq('far')
+      expect(hash[:content]).to eq('')
     end
 
     it 'should rename key :color to :text_color' do
-      icon = Prawn::Icon.new 'fa-arrows', pdf, color: '0099ff'
+      icon = Prawn::Icon.new 'far-address-book', pdf, color: '0099ff'
       hash = icon.format_hash
 
       expect(hash[:color]).to be_nil
@@ -62,7 +62,7 @@ describe Prawn::Icon do
 
   describe '#render' do
     it 'should render an icon to the page' do
-      pdf.icon('fa-arrows').render
+      pdf.icon('far-address-book').render
       text = PDF::Inspector::Text.analyze(pdf.render)
 
       expect(text.font_settings.first[:name]).to match(/FontAwesome/)
@@ -72,9 +72,9 @@ describe Prawn::Icon do
   describe '#set' do
     context 'with dashes in key' do
       it 'should return the set as a symbol from key' do
-        set = Prawn::Icon.new('fa-arrows', pdf).set
+        set = Prawn::Icon.new('far-address-book', pdf).set
 
-        expect(set).to eq(:fa)
+        expect(set).to eq(:far)
       end
     end
 
@@ -90,7 +90,7 @@ describe Prawn::Icon do
   describe '#unicode' do
     context 'valid icon key' do
       it 'should return a unicode character' do
-        icon = Prawn::Icon.new 'fa-arrows', pdf
+        icon = Prawn::Icon.new 'far-address-book', pdf
 
         expect(valid_unicode?(icon.unicode)).to be true
       end
@@ -98,7 +98,7 @@ describe Prawn::Icon do
 
     context 'invalid icon key' do
       it 'should raise IconNotFound' do
-        proc = Proc.new { Prawn::Icon.new 'fa-__INVALID__', pdf }
+        proc = Proc.new { Prawn::Icon.new 'far-__INVALID__', pdf }
 
         expect(proc).to raise_error(errors::IconNotFound)
       end

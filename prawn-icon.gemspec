@@ -33,7 +33,7 @@ Gem::Specification.new do |spec|
 
   spec.description = <<-END_DESC
   Prawn::Icon provides various icon fonts including
-  FontAwesome, Foundation Icons and GitHub Octicons
+  FontAwesome, PaymentFont and Foundation Icons
   for use with the Prawn PDF toolkit.
   END_DESC
 end

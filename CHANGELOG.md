@@ -1,3 +1,11 @@
+# 2.0.0 - March 7, 2018
+
+* [**breaking change**] Update to FontAwesome 5.0.8. FontAwesome 5 now provides 3 different font families: `brands`, `regular` and `solid`. The specifiers for these font icons are now: `fab`, `far` and `fas`.
+* [**breaking change**] Remove GitHub Octicons because Octicons are now only [delivered via SVG](https://github.com/blog/2112-delivering-octicons-with-svg).
+* [**breaking change**] Make the font specifier a required attribute for `Prawn::Icon::FontData#new`. Previously it was assumed to be `fa`.
+* Write a new tool `tool/fontawesome/converter.rb` that accepts the FontAwesome metadata YAML file ([link](https://github.com/FortAwesome/Font-Awesome/blob/31281606f5205b0191c17c3b4d2d56e1ddbb2dc6/advanced-options/metadata/icons.yml)), and generates the correct legend files for `brands`, `regular` and `solid` styles.
+* Require 'prawn/icon/version' with by default.
+
 # 1.4.0 - Sept 11, 2017
 
 - Update dependency gems to latest version.

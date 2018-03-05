@@ -6,6 +6,7 @@
 #
 # This is free software. Please see the LICENSE and COPYING files for details.
 
+require_relative 'icon/version'
 require_relative 'icon/base'
 require_relative 'icon/font_data'
 require_relative 'icon/parser'
