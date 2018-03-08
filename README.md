@@ -10,7 +10,6 @@ The following icon fonts ship with Prawn::Icon:
 
 * FontAwesome (http://fontawesome.io/icons/)
 * Foundation Icons (http://zurb.com/playground/foundation-icon-fonts-3)
-* GitHub Octicons (https://octicons.github.com)
 * PaymentFont (http://paymentfont.io)
 
 Prawn::Icon was originally written by Jesse Doyle.
@@ -31,13 +30,13 @@ Prawn::Icon was designed to have an API familiar to Prawn. A single icon may be 
 require 'prawn/icon'
 
 Prawn::Document.generate('icons.pdf') do |pdf|
-  pdf.icon 'fa-beer', size: 60
+  pdf.icon 'fas-beer', size: 60
 end
 ```
 
 produces:
 
-![FontAwesome Beer](https://raw.github.com/jessedoyle/prawn-icon/master/examples/fa-beer.png)
+![FontAwesome Beer](https://raw.github.com/jessedoyle/prawn-icon/master/examples/fas-beer.png)
 
 ## Inline Icons
 
@@ -47,13 +46,13 @@ You can also provide the `inline_format: true` option to Prawn::Icon:
 require 'prawn/icon'
 
 Prawn::Document.generate('inline_icons.pdf') do |pdf|
-  pdf.icon 'Enjoy: <icon size="20" color="AAAAAA">fa-beer</icon>', inline_format: true
+  pdf.icon 'Enjoy: <icon size="20" color="AAAAAA">fas-beer</icon>', inline_format: true
 end
 ```
 
 produces:
 
-![FontAwesome Beer Inline](https://raw.github.com/jessedoyle/prawn-icon/master/examples/fa-beer-inline.png)
+![FontAwesome Beer Inline](https://raw.github.com/jessedoyle/prawn-icon/master/examples/fas-beer-inline.png)
 
 When using `inline_format: true`, you may supply `<icon>` tags with `color` and `size` attributes.
 
@@ -69,7 +68,7 @@ Prawn::Document.generate('table_icons.pdf') do |pdf|
 
   data = [
     # Explicit brackets must be used here
-    [pdf.table_icon('fa-birthday-cake'), 'Cake'],
+    [pdf.table_icon('fas-birthday-cake'), 'Cake'],
     ['is', 'Great!']
   ]
 
@@ -85,10 +84,11 @@ Prawn::Icon uses the prefix of an icon key to determine which font family is use
 
 Currently supported prefixes include:
 
-* `fa` - Fontawesome (eg. `fa-arrows`)
-* `fi` - Foundation Icons (eg. `fi-compass`)
-* `octicon` - Github Octicons (eg. `octicon-calendar`)
-* `pf` - PaymentFont (eg. `pf-cash`)
+* `fab` - [FontAwesome Brands](https://fontawesome.com/icons?d=gallery&s=brands&m=free) (eg. `fab-amazon`).
+* `far` - [FontAwesome Regular](https://fontawesome.com/icons?d=gallery&s=regular&m=free) (eg. `far-address-book`).
+* `fas` - [FontAwesome Solid](https://fontawesome.com/icons?d=gallery&s=solid&m=free) (eg. `fas-location-arrow`).
+* `fi` - [Foundation Icons](https://zurb.com/playground/foundation-icon-fonts-3) (eg. `fi-compass`).
+* `pf` - [PaymentFont](https://paymentfont.com/#icons) (eg. `pf-cash`).
 
 ## How It Works
 

@@ -3,33 +3,41 @@
 require_relative '../lib/prawn/icon'
 require_relative 'example_helper'
 
-Prawn::Document.generate('fontawesome.pdf') do
-  deja_path = File.join \
-    Prawn::Icon::Base::FONTDIR, 'DejaVuSans.ttf'
+STYLES = {
+  fab: 'Brands',
+  far: 'Regular',
+  fas: 'Solid'
+}.freeze
 
-  font_families.update({
-    'deja' => { normal: deja_path }
-  })
+STYLES.each do |specifier, type|
+  Prawn::Document.generate("fontawesome_#{type.downcase}.pdf") do
+    deja_path = File.join \
+      Prawn::Icon::Base::FONTDIR, 'DejaVuSans.ttf'
 
-  font('deja')
+    font_families.update(
+      'deja' => { normal: deja_path }
+    )
 
-  icons = icon_keys(self, 'fa')
-  required_pages = number_of_pages(self, 'fa')
+    font('deja')
 
-  define_grid(columns: 6, rows: 12, gutter: 16)
+    icons = icon_keys(self, specifier.to_s)
+    required_pages = number_of_pages(self, specifier.to_s)
 
-  sub_header = 'FontAwesome'
-  link = 'http://fontawesome.io/icons/'
-  page_header sub_header, link
+    define_grid(columns: 6, rows: 12, gutter: 16)
 
-  first_page_icons icons do |icon_key|
-    # Just call the +icon+ method and pass in an icon key
-    icon icon_key, size: 20, align: :center
-  end
+    sub_header = "FontAwesome | #{type}"
+    link = 'http://fontawesome.io/icons/'
+    page_header sub_header, link
 
-  start_new_page
+    first_page_icons icons do |icon_key|
+      # Just call the +icon+ method and pass in an icon key
+      icon icon_key, size: 20, align: :center
+    end
 
-  page_icons icons, required_pages do |icon_key|
-    icon icon_key, size: 20, align: :center
+    start_new_page
+
+    page_icons icons, required_pages do |icon_key|
+      icon icon_key, size: 20, align: :center
+    end
   end
 end

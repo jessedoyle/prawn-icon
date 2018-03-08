@@ -12,7 +12,7 @@ describe Prawn::Icon::Errors::IconNotFound do
   end
 
   it 'is thrown on an invalid icon key' do
-    proc = Proc.new { pdf.icon 'fa-an invalid key' }
+    proc = Proc.new { pdf.icon 'far-an invalid key' }
 
     expect(proc).to raise_error(described_class)
   end

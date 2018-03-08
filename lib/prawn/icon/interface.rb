@@ -9,8 +9,7 @@
 module Prawn
   # Easy icon font usage within Prawn. Currently
   # supported icon fonts include: FontAwesome,
-  # Zurb Foundicons, GitHub Octicons, as well as
-  # PaymentFont.
+  # Zurb Foundicons and PaymentFont.
   #
   # = Icon Keys
   #
@@ -58,8 +57,8 @@ module Prawn
       #   the underlying +text+ method call.
       #
       # == Examples:
-      #   pdf.icon 'fa-beer'
-      #   pdf.icon '<icon color="0099FF">fa-arrows</icon>',
+      #   pdf.icon 'fas-beer'
+      #   pdf.icon '<icon color="0099FF">fas-user-circle</icon>',
       #   inline_format: true
       #
       def icon(key, opts = {})
@@ -135,7 +134,7 @@ module Prawn
       #   that match the data necessary for the
       #   specified icon.
       #
-      #   eg. { font: 'fa', content: '\uf047' }
+      #   eg. { font: 'fas', content: "\uf2b9" }
       #
       #   Note that the +font+ key will not be set
       #   if +inline_format: true+.
@@ -145,7 +144,7 @@ module Prawn
       #
       #   data = [
       #     # Explicit brackets must be used here
-      #     [pdf.table_icon('fa-arrows'), 'Cell 1'],
+      #     [pdf.table_icon('fas-coffee'), 'Cell 1'],
       #     ['Cell 2', 'Cell 3']
       #   ]
       #

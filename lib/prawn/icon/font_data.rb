@@ -45,7 +45,7 @@ module Prawn
       attr_reader :set
 
       def initialize(document, opts = {})
-        @set = opts[:set] || :fa
+        @set = opts.fetch(:set)
         load_fonts(document)
       end
 

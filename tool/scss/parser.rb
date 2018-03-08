@@ -32,7 +32,7 @@ module SCSS
           '__font_version__' => data.scan(version).flatten.first
         }
       }
-      yaml = matches.each_with_object(initial) do |hash, match|
+      yaml = matches.each_with_object(initial) do |match, hash|
         key, value = match
         hash[specifier][key] = [value.hex].pack('U')
         hash
