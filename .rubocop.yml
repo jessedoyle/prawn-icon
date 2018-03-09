@@ -22,3 +22,5 @@ Metrics/AbcSize:
   Max: 20
 Layout/EmptyLineAfterMagicComment:
   Enabled: false
+Layout/IndentHeredoc:
+  Enabled: false

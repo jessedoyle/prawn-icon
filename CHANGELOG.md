@@ -1,3 +1,13 @@
+# 2.1.0 - April 1, 2018
+
+* Introduce backwards compatibility with FontAwesome 4 icon keys by dynamically
+  rewriting all instances of `fa-*` to their appropriate FontAwesome 5 equivalent
+  key. This is achieved by implementing a shim generated from the FontAwesome metadata.
+* Introduce a deprecation warning written to `STDERR` when any `fa-*` key is
+  encountered. The compatibility shim will be removed in the next major version
+  of `Prawn::Icon` (`3.0.0`).
+* See the [discussion here](https://github.com/jessedoyle/prawn-icon/pull/33) for more details.
+
 # 2.0.0 - March 7, 2018
 
 * [**breaking change**] Update to FontAwesome 5.0.8. FontAwesome 5 now provides 3 different font families: `brands`, `regular` and `solid`. The specifiers for these font icons are now: `fab`, `far` and `fas`.
