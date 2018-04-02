@@ -57,7 +57,6 @@ module Prawn
             tokens.each do |token|
               # Skip the closing tag
               next if token =~ /<\/icon>/i
-              icon = {}
 
               # Convert [[1,2], [3,4]] to { :1 => 2, :3 => 4 }
               attrs = token.scan(ATTR_REGEX).inject({}) do |k, v|
@@ -65,8 +64,7 @@ module Prawn
                 k.merge!(val)
               end
 
-              icon.merge!(attrs)
-              array << icon
+              array << attrs
             end
           end
         end
@@ -101,13 +99,14 @@ module Prawn
         def keys_to_unicode(document, content, config)
           [].tap do |icons|
             content.each_with_index do |icon, index|
+              key = Compatibility.new(key: icon).translate
               options ||= {}
               options = config[index] if config.any?
               info = {
-                set:     FontData.specifier_from_key(icon),
+                set:     FontData.specifier_from_key(key),
                 size:    options[:size],
                 color:   options[:color],
-                content: FontData.unicode_from_key(document, icon)
+                content: FontData.unicode_from_key(document, key)
               }
               icons << info
             end

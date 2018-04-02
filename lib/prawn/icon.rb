@@ -11,5 +11,6 @@ require_relative 'icon/base'
 require_relative 'icon/font_data'
 require_relative 'icon/parser'
 require_relative 'icon/interface'
+require_relative 'icon/compatibility'
 
 Prawn::Document.extensions << Prawn::Icon::Interface

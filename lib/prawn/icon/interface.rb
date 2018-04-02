@@ -62,6 +62,7 @@ module Prawn
       #   inline_format: true
       #
       def icon(key, opts = {})
+        key = translate_key(key)
         make_icon(key, opts).tap(&:render)
       end
 
@@ -81,7 +82,8 @@ module Prawn
       #   the underlying text method call.
       #
       def make_icon(key, opts = {})
-        if opts[:inline_format]
+        key = translate_key(key)
+        if opts.fetch(:inline_format, false)
           inline_icon(key, opts)
         else
           Icon.new(key, self, opts)
@@ -151,6 +153,7 @@ module Prawn
       #   pdf.table(data) => (2 x 2 table)
       #
       def table_icon(key, opts = {})
+        key = translate_key(key)
         if opts[:inline_format]
           content = Icon::Parser.format(self, key)
           opts.merge(content: content)
@@ -160,6 +163,10 @@ module Prawn
       end
 
       private
+
+      def translate_key(key)
+        Compatibility.new(key: key).translate
+      end
 
       def icon_box(content, opts = {}) # :nodoc:
         Text::Formatted::Box.new(content, opts).tap do |box|
@@ -176,8 +183,7 @@ module Prawn
 
     def initialize(key, document, opts = {})
       @pdf     = document
-      @set     = opts[:set] ||
-                 FontData.specifier_from_key(key)
+      @set     = opts.fetch(:set) { FontData.specifier_from_key(key) }
       @data    = FontData.load(document, @set)
       @key     = strip_specifier_from_key(key)
       @unicode = @data.unicode(@key)
