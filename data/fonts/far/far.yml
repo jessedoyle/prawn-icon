@@ -1,6 +1,6 @@
 ---
 far:
-  __font_version__: 5.0.8
+  __font_version__: 5.0.13
   address-book: ""
   address-card: ""
   arrow-alt-circle-down: ""
@@ -31,6 +31,7 @@ far:
   closed-captioning: ""
   comment: ""
   comment-alt: ""
+  comment-dots: ""
   comments: ""
   compass: ""
   copy: ""
@@ -40,6 +41,7 @@ far:
   edit: ""
   envelope: ""
   envelope-open: ""
+  eye: ""
   eye-slash: ""
   file: ""
   file-alt: ""
@@ -55,6 +57,7 @@ far:
   flag: ""
   folder: ""
   folder-open: ""
+  font-awesome-logo-full: ""
   frown: ""
   futbol: ""
   gem: ""
