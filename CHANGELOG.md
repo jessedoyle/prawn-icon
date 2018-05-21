@@ -1,3 +1,10 @@
+# 2.2.0 - May 20, 2018
+
+* Move out shim configuration into a `.yml` file located inside the `data/fonts/fa4/shims.yml` file.
+* Update FontAwesome TTF files and legend files from 5.0.8 to 5.0.13.
+* Add additional compatibility shims that were missing for some icons from FontAwesome 4. This version release is now fully backwards-compatible with all icon specifiers present in FontAwesome 4 (via version `1.4.0` of this gem).
+* Fix a bug in the FontAwesome converter tool by properly requiring `fileutils` before execution.
+
 # 2.1.0 - April 1, 2018
 
 * Introduce backwards compatibility with FontAwesome 4 icon keys by dynamically

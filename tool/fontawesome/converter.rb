@@ -8,6 +8,7 @@
 # This is free software. Please see the LICENSE and COPYING files for details.
 
 require 'yaml'
+require 'fileutils'
 
 module Fontawesome
   class Converter
