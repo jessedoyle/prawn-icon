@@ -1,3 +1,8 @@
+# 2.3.0 - October 8, 2018
+
+* Update FontAwesome to version from `5.0.13` to `5.4.0`.
+* See FontAwesome's [release page](https://github.com/FortAwesome/Font-Awesome/releases/tag/5.4.0) for more details.
+
 # 2.2.0 - May 20, 2018
 
 * Move out shim configuration into a `.yml` file located inside the `data/fonts/fa4/shims.yml` file.
