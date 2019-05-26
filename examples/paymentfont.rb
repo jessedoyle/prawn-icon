@@ -19,7 +19,7 @@ Prawn::Document.generate('paymentfont.pdf') do
   define_grid(columns: 6, rows: 12, gutter: 16)
 
   sub_header = 'PaymentFont'
-  link = 'http://paymentfont.io'
+  link = 'https://paymentfont.com'
   page_header sub_header, link
 
   first_page_icons icons do |icon_key|
