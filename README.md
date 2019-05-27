@@ -10,7 +10,7 @@ The following icon fonts ship with Prawn::Icon:
 
 * FontAwesome (http://fontawesome.io/icons/)
 * Foundation Icons (http://zurb.com/playground/foundation-icon-fonts-3)
-* PaymentFont (http://paymentfont.io)
+* PaymentFont (https://paymentfont.com)
 
 Prawn::Icon was originally written by Jesse Doyle.
 

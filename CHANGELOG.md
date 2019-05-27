@@ -1,3 +1,9 @@
+# 2.4.0 - May 26, 2019
+
+* Update FontAwesome from `5.4.0` to `5.8.2`.
+* See FontAwesome's [upgrade guide](https://github.com/FortAwesome/Font-Awesome/blob/master/UPGRADING.md) for more details.
+* Update the Payment Icon URL to https://paymentfont.com.
+
 # 2.3.0 - October 8, 2018
 
 * Update FontAwesome to version from `5.0.13` to `5.4.0`.
@@ -109,7 +115,7 @@
 
 # 0.6.4 - May 4, 2015
 
-- [PaymentFont](http://paymentfont.io) is now supported and included in `Prawn::Icon`.
+- [PaymentFont](https://paymentfont.com) is now supported and included in `Prawn::Icon`.
 
 # 0.6.3 - March 4, 2015
 
