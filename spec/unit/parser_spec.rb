@@ -38,16 +38,18 @@ describe Prawn::Icon::Parser do
 
     it 'should raise an error when an icon key is invalid' do
       string = '<icon>an invalid key</icon>'
-      proc = Proc.new { Prawn::Icon::Parser.format(pdf, string) }
 
-      expect(proc).to raise_error(Prawn::Errors::UnknownFont)
+      expect { Prawn::Icon::Parser.format(pdf, string) }.to raise_error(
+        Prawn::Errors::UnknownFont
+      )
     end
 
     it 'should raise an error when an icon is not found for valid set' do
       string = '<icon>far-__INVALID__</icon>'
-      proc = Proc.new { Prawn::Icon::Parser.format(pdf, string) }
 
-      expect(proc).to raise_error(Prawn::Icon::Errors::IconNotFound)
+      expect { Prawn::Icon::Parser.format(pdf, string) }.to raise_error(
+        Prawn::Icon::Errors::IconNotFound
+      )
     end
   end
 

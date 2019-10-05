@@ -12,8 +12,6 @@ describe Prawn::Icon::Errors::IconKeyEmpty do
   end
 
   it 'is thrown on a missing icon key' do
-    proc = Proc.new { pdf.icon '' }
-
-    expect(proc).to raise_error(described_class)
+    expect { pdf.icon('') }.to raise_error(described_class)
   end
 end

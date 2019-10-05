@@ -77,17 +77,17 @@ describe Prawn::Icon::Interface do
 
     context 'invalid icon key' do
       it 'should raise IconNotFound' do
-        proc = Proc.new { pdf.icon 'far-__INVALID' }
-
-        expect(proc).to raise_error(Prawn::Icon::Errors::IconNotFound)
+        expect { pdf.icon('far-__INVALID') }.to raise_error(
+          Prawn::Icon::Errors::IconNotFound
+        )
       end
     end
 
     context 'invalid specifier' do
       it 'should raise UnknownFont' do
-        proc = Proc.new { pdf.icon '__INVALID__' }
-
-        expect(proc).to raise_error(Prawn::Errors::UnknownFont)
+        expect { pdf.icon('__INVALID__') }.to raise_error(
+          Prawn::Errors::UnknownFont
+        )
       end
     end
   end

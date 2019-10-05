@@ -19,25 +19,25 @@ describe Prawn::Icon do
       end
 
       it 'should raise an error if icon key is not found' do
-        proc = Proc.new { Prawn::Icon.new 'far-__INVALID__', pdf }
-
-        expect(proc).to raise_error(errors::IconNotFound)
+        expect { Prawn::Icon.new('far-__INVALID__', pdf) }.to raise_error(
+          errors::IconNotFound
+        )
       end
     end
 
     context 'invalid icon specifier' do
       it 'should raise an error' do
-        proc = Proc.new { pdf.icon '__INVALID__  some text' }
-
-        expect(proc).to raise_error(Prawn::Errors::UnknownFont)
+        expect { pdf.icon('__INVALID__  some text') }.to raise_error(
+          Prawn::Errors::UnknownFont
+        )
       end
     end
 
     context 'without a pdf object' do
       it 'should raise an ArgumentError' do
-        proc = Proc.new { Prawn::Icon.new('far-address-book') }
-
-        expect(proc).to raise_error(ArgumentError)
+        expect { Prawn::Icon.new('far-address-book') }.to raise_error(
+          ArgumentError
+        )
       end
     end
   end
@@ -80,9 +80,9 @@ describe Prawn::Icon do
 
     context 'without dashes in key' do
       it 'raise an error about invalid keys' do
-        proc = Proc.new { Prawn::Icon.new 'some invalid key', pdf }
-
-        expect(proc).to raise_error(Prawn::Errors::UnknownFont)
+        expect { Prawn::Icon.new('some invalid key', pdf) }.to raise_error(
+          Prawn::Errors::UnknownFont
+        )
       end
     end
   end
@@ -98,9 +98,9 @@ describe Prawn::Icon do
 
     context 'invalid icon key' do
       it 'should raise IconNotFound' do
-        proc = Proc.new { Prawn::Icon.new 'far-__INVALID__', pdf }
-
-        expect(proc).to raise_error(errors::IconNotFound)
+        expect { Prawn::Icon.new('far-__INVALID__', pdf) }.to raise_error(
+          errors::IconNotFound
+        )
       end
     end
   end

@@ -1,6 +1,6 @@
 ---
 fab:
-  __font_version__: 5.8.2
+  __font_version__: 5.11.2
   500px: ""
   accessible-icon: ""
   accusoft: ""
@@ -50,6 +50,7 @@ fab:
   btc: ""
   buffer: ""
   buromobelexperte: ""
+  buy-n-large: ""
   buysellads: ""
   canadian-maple-leaf: ""
   cc-amazon-pay: ""
@@ -74,6 +75,7 @@ fab:
   confluence: ""
   connectdevelop: ""
   contao: ""
+  cotton-bureau: ""
   cpanel: ""
   creative-commons: ""
   creative-commons-by: ""
@@ -239,6 +241,7 @@ fab:
   markdown: ""
   mastodon: ""
   maxcdn: ""
+  mdb: ""
   medapps: ""
   medium: ""
   medium-m: ""
@@ -255,7 +258,6 @@ fab:
   napster: ""
   neos: ""
   nimblr: ""
-  nintendo-switch: ""
   node: ""
   node-js: ""
   npm: ""
@@ -268,6 +270,7 @@ fab:
   openid: ""
   opera: ""
   optin-monster: ""
+  orcid: ""
   osi: ""
   page4: ""
   pagelines: ""
@@ -359,6 +362,7 @@ fab:
   superpowers: ""
   supple: ""
   suse: ""
+  swift: ""
   symfony: ""
   teamspeak: ""
   telegram: ""
@@ -380,6 +384,7 @@ fab:
   uber: ""
   ubuntu: ""
   uikit: ""
+  umbraco: ""
   uniregistry: ""
   untappd: ""
   ups: ""

@@ -1,3 +1,8 @@
+# 2.5.0 - October 4, 2019
+
+* Update FontAwesome from `5.8.2` to `5.11.2`.
+* See FontAwesome's [upgrade guide](https://github.com/FortAwesome/Font-Awesome/blob/master/UPGRADING.md) for more details.
+
 # 2.4.0 - May 26, 2019
 
 * Update FontAwesome from `5.4.0` to `5.8.2`.
