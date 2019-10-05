@@ -72,15 +72,15 @@ describe Prawn::Icon::FontData do
     end
 
     it 'should error when key is nil' do
-      proc = Proc.new { Prawn::Icon::FontData.specifier_from_key nil }
-
-      expect(proc).to raise_error(Prawn::Icon::Errors::IconKeyEmpty)
+      expect { Prawn::Icon::FontData.specifier_from_key(nil) }.to raise_error(
+        Prawn::Icon::Errors::IconKeyEmpty
+      )
     end
 
     it 'should error when key is an empty string' do
-      proc = Proc.new { Prawn::Icon::FontData.specifier_from_key '' }
-
-      expect(proc).to raise_error(Prawn::Icon::Errors::IconKeyEmpty)
+      expect { Prawn::Icon::FontData.specifier_from_key('') }.to raise_error(
+        Prawn::Icon::Errors::IconKeyEmpty
+      )
     end
 
     it 'should handle strings without any dashes properly' do
@@ -141,9 +141,9 @@ describe Prawn::Icon::FontData do
     end
 
     it 'should raise an error if unable to match a key' do
-      proc = Proc.new { fontawesome.unicode('an invalid sequence') }
-
-      expect(proc).to raise_error(Prawn::Icon::Errors::IconNotFound)
+      expect { fontawesome.unicode('an invalid sequence') }.to raise_error(
+        Prawn::Icon::Errors::IconNotFound
+      )
     end
   end
 
