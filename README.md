@@ -56,6 +56,19 @@ produces:
 
 When using `inline_format: true`, you may supply `<icon>` tags with `color` and `size` attributes.
 
+When using `inline_format: true` you may supply option with `x` and `y` to specify position of icon (by default icon position will be `bounds.left` and `cursor`)
+
+Example:
+
+```ruby
+require 'prawn/icon'
+
+Prawn::Document.generate('inline_icons.pdf') do |pdf|
+  pdf.icon 'Enjoy: <icon size="20" color="AAAAAA">fas-beer</icon>', inline_format: true, x: 30, y: 50
+end
+```
+
+
 ## Use with [Prawn::Table](https://github.com/prawnpdf/prawn-table)
 
 A `table_icon` method may be called when creating a table's data array to render icons within a table cell:
