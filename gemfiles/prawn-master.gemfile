@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
 
-gem 'prawn', github: 'prawnpdf/prawn'
+gem 'prawn', git: 'https://github.com/prawnpdf/prawn'
 
 gemspec path: '..'

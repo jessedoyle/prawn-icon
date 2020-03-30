@@ -1,0 +1,36 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        ruby:
+          - '2.6'
+          - '2.7'
+        gemfile:
+          - gemfiles/prawn-1.3.0.gemfile
+          - gemfiles/prawn-2.2.0.gemfile
+          - gemfiles/prawn-master.gemfile
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Ruby
+        uses: actions/setup-ruby@v1
+        with:
+          ruby-version: ${{ matrix.ruby }}
+      - name: Build and test with Rake
+        env:
+          BUNDLE_GEMFILE: ${{ matrix.gemfile }}
+        run: |
+          gem install bundler
+          echo 'bundle install --gemfile=${{ matrix.gemfile }}'
+          bundle install --jobs 4 --retry 3
+          bundle exec rake
