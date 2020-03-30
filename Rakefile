@@ -31,4 +31,3 @@ task :legend do
 end
 
 RuboCop::RakeTask.new
-
