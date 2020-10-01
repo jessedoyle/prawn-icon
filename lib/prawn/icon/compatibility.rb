@@ -9,13 +9,21 @@
 module Prawn
   class Icon
     class Compatibility
+      # @deprecated Use {Prawn::Icon::Compatibility.shims} instead
       SHIMS = YAML.load_file(
-        File.join(
-          Base::FONTDIR,
+        Prawn::Icon.configuration.font_directory.join(
           'fa4',
           'shims.yml'
         )
       ).freeze
+
+      class << self
+        def shims
+          @shims ||= YAML.load_file(
+            Icon.configuration.font_directory.join('fa4', 'shims.yml').to_s
+          )
+        end
+      end
 
       attr_accessor :key
 
@@ -36,7 +44,7 @@ module Prawn
       private
 
       def map
-        SHIMS.fetch(key) do
+        self.class.shims.fetch(key) do
           # FontAwesome shim metadata assumes "fas" as the default
           # font family if not explicity referenced.
           "fas-#{key.sub(/fa-/, '')}"

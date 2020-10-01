@@ -4,8 +4,9 @@ require_relative '../lib/prawn/icon'
 require_relative 'example_helper'
 
 Prawn::Document.generate('foundation_icons.pdf') do
-  deja_path = File.join \
-    Prawn::Icon::Base::FONTDIR, 'DejaVuSans.ttf'
+  deja_path = Prawn::Icon.configuration.font_directory
+    .join('DejaVuSans.ttf')
+    .to_s
 
   font_families.update({
     'deja' => { normal: deja_path }
