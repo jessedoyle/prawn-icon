@@ -110,7 +110,10 @@ module Prawn
         box_options = opts.merge(
           inline_format: true,
           document: self,
-          at: [opts[:x].present? ? opts[:x] : bounds.left , opts[:y].present? ? opts[:y] : cursor]
+          at: [
+            opts.fetch(:x) { bounds.left },
+            opts.fetch(:y) { cursor }
+          ]
         )
         icon_box(content, box_options)
       end
