@@ -1,3 +1,7 @@
+# 2.6.0 - October 4, 2020
+
+* Added position option for inline icons
+
 # 2.5.0 - October 4, 2019
 
 * Update FontAwesome from `5.8.2` to `5.11.2`.
