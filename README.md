@@ -56,8 +56,15 @@ produces:
 
 When using `inline_format: true`, you may supply `<icon>` tags with `color` and `size` attributes.
 
-When using `inline_format: true` you may supply option with `x` and `y` to specify position of icon (by default icon position will be `bounds.left` and `cursor`)
+You can also absolutely position inline icon content using `x` and `y` values:
 
+```ruby
+require 'prawn/icon'
+
+Prawn::Document.generate('inline_icon_position.pdf') do |pdf|
+  pdf.icon 'Hello, <icon>fas-globe</icon>', inline_format: true, x: 100, y: 600
+end
+```
 
 ## Use with [Prawn::Table](https://github.com/prawnpdf/prawn-table)
 
