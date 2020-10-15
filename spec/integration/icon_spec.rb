@@ -47,20 +47,28 @@ describe Prawn::Icon::Interface do
           pdf.move_down 10
           pdf.text 'More'
           pdf.move_down 20
-          icon = pdf.icon icon_text, inline_format: true
+          pdf.icon icon_text, inline_format: true
           pdf.move_down 30
           pdf.text 'End'
+          inspector = PDF::Inspector::Text.analyze(pdf.render)
+          x, y = inspector.positions[2]
 
-          expect(icon.at.first).to eq(0)
-          expect(icon.at.last.round).to eq(734)
+          expect(x).to eq(0)
+          expect(y.round).to eq(724)
         end
 
         context 'with final_gap: false' do
           it 'renders the icon without a final gap' do
-            icon = pdf.icon '<icon size="60">far-address-book</icon>',
+            pdf.icon(
+              '<icon size="60">far-address-book</icon>',
               inline_format: true,
               final_gap: false
-            expect(icon.at.last.round).to eq(792)
+            )
+            pdf.text('Hello')
+            inspector = PDF::Inspector::Text.analyze(pdf.render)
+            y = inspector.positions[1].last.round
+
+            expect(y).to eq(723)
           end
         end
       end
@@ -102,19 +110,63 @@ describe Prawn::Icon::Interface do
     end
 
     context ':inline_format => true' do
-      it 'should return a Prawn::::Text::Formatted::Box instance' do
+      it 'returns nil' do
         icon = pdf.make_icon '<icon>far-address-book</icon>', inline_format: true
 
-        expect(icon).to be_a(Prawn::Text::Formatted::Box)
+        expect(icon).to be_nil
       end
     end
   end
 
   describe '::inline_icon' do
-    it 'should return a Prawn::Text::Formatted::Box instance' do
+    it 'returns nil' do
       icon = pdf.inline_icon '<icon>far-address-book</icon>'
 
-      expect(icon).to be_a(Prawn::Text::Formatted::Box)
+      expect(icon).to be_nil
+    end
+
+    it 'starts a new page if necessary', github_issue: '49' do
+      text = 209.times.map { 'Hello, World!' }.join(' ')
+      pdf.text(text, size: 18)
+      pdf.icon('Hello, <icon>fas-globe</icon>', inline_format: true, size: 18)
+      inspector = PDF::Inspector::Page.analyze(pdf.render)
+
+      expect(inspector.pages.size).to eq(2)
+    end
+  end
+
+  describe '::formatted_icon_box' do
+    it 'returns a Prawn::Text::Formatted::Box instance' do
+      icon_text = <<~CONTENT
+        <icon size="20">fas-broom</icon>
+        <strikethrough>cancel that</strikethrough>
+        <icon>fas-check</icon>
+      CONTENT
+      box = pdf.formatted_icon_box(icon_text, inline_format: true)
+
+      expect(box).to be_a(Prawn::Text::Formatted::Box)
+    end
+
+    it 'accepts an absolute position parameter' do
+      icon_text = 'Hello, <icon>fas-globe</icon>!'
+      pdf.formatted_icon_box(icon_text, inline_format: true, x: 200, y: 100).render
+      inspector = PDF::Inspector::Text.analyze(pdf.render)
+      x, y = inspector.positions[0]
+
+      expect(x).to eq(200)
+      expect(y.round).to eq(90)
+    end
+
+    it 'handles final_gap: false correctly' do
+      icon_text = <<~CONTENT
+        Hello, <icon size="60">fas-globe</icon>
+        Next line.
+      CONTENT
+      pdf.formatted_icon_box(icon_text, inline_format: true, final_gap: false).render
+      inspector = PDF::Inspector::Text.analyze(pdf.render)
+      x = inspector.positions[1].first
+
+      expect(x.round).to eq(34)
     end
   end
 
