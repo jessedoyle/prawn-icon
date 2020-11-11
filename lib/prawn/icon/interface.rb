@@ -19,7 +19,7 @@ module Prawn
   # rule, included icon keys should match the keys from
   # the font provider. The icon key mapping is specified
   # in the font's +legend_file+, which is a +YAML+ file
-  # located in Prawn::Icon::Base::FONTDIR/font/font.yml.
+  # located in {Prawn::Icon.configuration.font_directory}/font/font.yml.
   #
   # Prawn::Icon::
   #   Houses the methods and interfaces necessary for
@@ -38,6 +38,7 @@ module Prawn
   #   to Prawn's internal formatted text parser.
   #
   class Icon
+    # @deprecated Use {Prawn::Icon.configuration.font_directory} instead
     FONTDIR = Icon::Base::FONTDIR
 
     module Interface

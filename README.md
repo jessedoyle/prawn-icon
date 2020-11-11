@@ -110,6 +110,16 @@ rake legend
 
 should generate these files when run from Prawn::Icon's gem directory.
 
+## Configuration
+
+You can optionally configure Prawn::Icon to use an alternate data directory for font files.
+
+```ruby
+Prawn::Icon.configure do |config|
+  config.font_directory = '/path/to/my/fonts'
+end
+```
+
 ## Contributing
 
 I'll gladly accept pull requests that are well tested for any bug found in Prawn::Icon.

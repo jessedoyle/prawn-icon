@@ -11,8 +11,9 @@ STYLES = {
 
 STYLES.each do |specifier, type|
   Prawn::Document.generate("fontawesome_#{type.downcase}.pdf") do
-    deja_path = File.join \
-      Prawn::Icon::Base::FONTDIR, 'DejaVuSans.ttf'
+    deja_path = Prawn::Icon.configuration.font_directory
+      .join('DejaVuSans.ttf')
+      .to_s
 
     font_families.update(
       'deja' => { normal: deja_path }

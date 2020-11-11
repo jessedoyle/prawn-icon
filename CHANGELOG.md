@@ -5,6 +5,16 @@
 * Allow `#formatted_icon_box` to accept absolute positioning parameters (`x`, `y`, and `at`). Thanks @navinspm!
 * Update fontawesome from version `5.11.2` to `5.15.1`.
 * See FontAwesome's [upgrade guide](https://github.com/FortAwesome/Font-Awesome/blob/57005cea6da7d1c67f3466974aecd25485f60452/UPGRADING.md) for more details.
+* Introduce a configuration mechanism so that the font directory can be customized as follows:
+
+```ruby
+Prawn::Icon.configure do |config|
+  config.font_directory = '/path/to/fonts'
+end
+```
+
+* Deprecate the global variables of `Prawn::Icon::Base::FONTDIR` and `Prawn::Icon::Compatibility::SHIMS`. Use `Prawn::Icon.configuration.font_directory` and `Prawn::Icon::Compatibility.shims` instead.
+* Use `Gem::Specification#full_gem_path` to get the root path of the gem directory to resolve https://github.com/jessedoyle/prawn-icon/issues/45.
 
 #### Inline Format Changes
 

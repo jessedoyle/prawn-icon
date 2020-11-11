@@ -24,3 +24,5 @@ Layout/EmptyLineAfterMagicComment:
   Enabled: false
 Layout/IndentHeredoc:
   Enabled: false
+Layout/MultilineMethodCallIndentation:
+  Enabled: false

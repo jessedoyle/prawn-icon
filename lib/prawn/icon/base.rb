@@ -11,9 +11,21 @@ require_relative 'errors'
 
 module Prawn
   class Icon
+    class << self
+      attr_writer :configuration
+
+      def configuration
+        @configuration ||= Configuration.new
+      end
+
+      def configure
+        yield(configuration)
+      end
+    end
+
     module Base
-      FONTDIR = File.join \
-        File.expand_path('../../../..', __FILE__), 'data/fonts'
+      # @deprecated Use {Prawn::Icon.configuration.font_directory} instead
+      FONTDIR = Prawn::Icon.configuration.font_directory.to_s
     end
   end
 end

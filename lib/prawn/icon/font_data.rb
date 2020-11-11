@@ -63,15 +63,17 @@ module Prawn
       end
 
       def path
-        ttf  = File.join(Icon::Base::FONTDIR, @set.to_s, '*.ttf')
-        font = Dir[ttf].first
+        font = Icon.configuration.font_directory
+          .join(@set.to_s)
+          .glob('*.ttf')
+          .first
 
         if font.nil?
           raise Prawn::Errors::UnknownFont,
                 "Icon font not found for set: #{@set}"
         end
 
-        @path ||= font
+        @path ||= font.to_s
       end
 
       def specifier
