@@ -63,11 +63,10 @@ module Prawn
       #
       def icon(key, opts = {})
         key = translate_key(key)
-        make_icon(key, opts).tap(&:render)
+        make_icon(key, opts).tap { |i| i && i.render }
       end
 
-      # Initialize a new icon object, but do
-      # not render it to the document.
+      # Initialize a new icon object.
       #
       # == Parameters:
       # key::
@@ -90,9 +89,9 @@ module Prawn
         end
       end
 
-      # Initialize a new formatted text box containing
-      # icon information, but don't render it to the
-      # document.
+      # Render formatted icon content to the document from
+      # a string containing icons. Content will correctly
+      # transition to a new page when necessary.
       #
       # == Parameters:
       # text::
@@ -107,10 +106,37 @@ module Prawn
       def inline_icon(text, opts = {})
         parsed = Icon::Parser.format(self, text)
         content = Text::Formatted::Parser.format(parsed)
+        formatted_text(content, opts)
+      end
+
+      # Initialize a formatted icon box from an icon-conatining
+      # string. Content is not directly rendered to the document,
+      # instead a +Prawn::Text::Formatted::Box+ instance is returned
+      # that responds to the +render+ method.
+      #
+      # == Parameters:
+      # text::
+      #   Input text to be parsed initially for <icon>
+      #   tags, then passed to Prawn's formatted text
+      #   parser.
+      #
+      # opts::
+      #   A hash of options that may be supplied to the
+      #   underlying text call.
+      #
+      def formatted_icon_box(text, opts = {})
+        parsed = Icon::Parser.format(self, text)
+        content = Text::Formatted::Parser.format(parsed)
+        position = opts.fetch(:at) do
+          [
+            opts.fetch(:x) { bounds.left },
+            opts.fetch(:y) { cursor }
+          ]
+        end
         box_options = opts.merge(
           inline_format: true,
           document: self,
-          at: [bounds.left, cursor]
+          at: position
         )
         icon_box(content, box_options)
       end

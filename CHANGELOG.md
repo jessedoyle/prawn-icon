@@ -1,3 +1,24 @@
+# 3.0.0 - November 10, 2020
+
+* **breaking change** - Fix incorrect layout and line-wrapping logic for inline-formatted icons. Please see [Inline Format Changes](#inline-format-changes) for more details.
+* Add a `#formatted_icon_box` method to retain the previous inline icon behaviour.
+* Allow `#formatted_icon_box` to accept absolute positioning parameters (`x`, `y`, and `at`). Thanks @navinspm!
+
+#### Inline Format Changes
+
+As noted in https://github.com/jessedoyle/prawn-icon/issues/49, `Prawn::Icon` did not correctly respect page boundaries for inline-formatted icons.
+
+The fix for the issue requires `Prawn::Icon` to use the inline layout and formatting logic implemented in `Prawn`.
+
+This change has ramifications to the `#icon` and `#inline_icon` method return values, but most applications should not require changes.
+
+Changes are listed below:
+
+* `#icon` - returns `nil` with the `inline_format: true` parameter.
+* `#inline_icon` - returns `nil` (instead of a `Prawn::Text::Formatted::Box` instance).
+
+You can call `#formatted_icon_box` to retain the previous inline icon functionality.
+
 # 2.5.0 - October 4, 2019
 
 * Update FontAwesome from `5.8.2` to `5.11.2`.
