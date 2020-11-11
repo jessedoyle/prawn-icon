@@ -3,6 +3,8 @@
 * **breaking change** - Fix incorrect layout and line-wrapping logic for inline-formatted icons. Please see [Inline Format Changes](#inline-format-changes) for more details.
 * Add a `#formatted_icon_box` method to retain the previous inline icon behaviour.
 * Allow `#formatted_icon_box` to accept absolute positioning parameters (`x`, `y`, and `at`). Thanks @navinspm!
+* Update fontawesome from version `5.11.2` to `5.15.1`.
+* See FontAwesome's [upgrade guide](https://github.com/FortAwesome/Font-Awesome/blob/57005cea6da7d1c67f3466974aecd25485f60452/UPGRADING.md) for more details.
 
 #### Inline Format Changes
 
