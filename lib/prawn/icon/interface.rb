@@ -1,4 +1,4 @@
-# encoding: utf-8
+# frozen_string_literal: true
 #
 # interface.rb: Prawn extension module and logic.
 #
@@ -64,7 +64,7 @@ module Prawn
       #
       def icon(key, opts = {})
         key = translate_key(key)
-        make_icon(key, opts).tap { |i| i && i.render }
+        make_icon(key, opts).tap { |i| i&.render }
       end
 
       # Initialize a new icon object.
@@ -199,9 +199,7 @@ module Prawn
         Text::Formatted::Box.new(content, opts).tap do |box|
           box.render(dry_run: true)
           self.y -= box.height
-          unless opts.fetch(:final_gap, true)
-            self.y -= box.line_gap + box.leading
-          end
+          self.y -= box.line_gap + box.leading unless opts.fetch(:final_gap, true)
         end
       end
     end

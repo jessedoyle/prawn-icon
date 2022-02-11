@@ -1,4 +1,4 @@
-# encoding: utf-8
+# frozen_string_literal: true
 #
 # base.rb - Base configuration for Prawn::Icon.
 #

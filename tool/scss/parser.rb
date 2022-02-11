@@ -1,5 +1,4 @@
-# encoding: utf-8
-
+# frozen_string_literal: true
 #
 # tool/scss/parser.rb: Convert SCSS variables to YAML legend.
 #

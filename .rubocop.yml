@@ -14,15 +14,16 @@ RegexpLiteral:
   Enabled: false
 SpaceAroundOperators:
   Enabled: false
-RedundantMerge:
-  Enabled: false
 FirstParameterIndentation:
   Enabled: false
 Metrics/AbcSize:
   Max: 20
 Layout/EmptyLineAfterMagicComment:
   Enabled: false
-Layout/IndentHeredoc:
+Layout/HeredocIndentation:
   Enabled: false
 Layout/MultilineMethodCallIndentation:
   Enabled: false
+Naming/FileName:
+  Exclude:
+    - gemfiles/*.gemfile

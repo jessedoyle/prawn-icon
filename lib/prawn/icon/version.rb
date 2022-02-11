@@ -1,4 +1,4 @@
-# encoding: utf-8
+# frozen_string_literal: true
 #
 # version.rb: Prawn icon versioning.
 #
@@ -8,6 +8,6 @@
 
 module Prawn
   class Icon
-    VERSION = '3.0.0'.freeze
+    VERSION = '3.0.0'
   end
 end

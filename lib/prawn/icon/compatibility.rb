@@ -1,4 +1,4 @@
-# encoding: utf-8
+# frozen_string_literal: true
 #
 # compatibility.rb - Prawn::Icon FontAwesome 4/5 compatibility shim.
 #
@@ -31,14 +31,12 @@ module Prawn
         self.key = opts.fetch(:key)
       end
 
-      def translate(io = STDERR)
-        @translate ||= begin
-          if key.start_with?('fa-')
-            map.tap { |replaced| warning(replaced, key, io) }
-          else
-            key
-          end
-        end
+      def translate(io = $stderr)
+        @translate ||= if key.start_with?('fa-')
+                         map.tap { |replaced| warning(replaced, key, io) }
+                       else
+                         key
+                       end
       end
 
       private
@@ -57,9 +55,8 @@ module Prawn
   FontAwesome 4 icon was referenced as '#{old_key}'.
   Use the FontAwesome 5 icon '#{new_key}' instead.
   This compatibility layer will be removed in Prawn::Icon 4.0.0.
-DEPRECATION
+        DEPRECATION
       end
     end
   end
 end
-# rubocop:enable Metrics/ClassLength
