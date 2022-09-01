@@ -1,5 +1,5 @@
 # frozen_string_literal: true
-#
+
 # configuration.rb: Prawn icon configuration.
 #
 # Copyright October 2020, Jesse Doyle. All rights reserved.

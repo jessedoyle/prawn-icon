@@ -1,5 +1,5 @@
 # frozen_string_literal: true
-#
+
 # parser.rb: Prawn icon tag text parser (pseudo-HTML).
 #
 # Copyright October 2014, Jesse Doyle. All rights reserved.

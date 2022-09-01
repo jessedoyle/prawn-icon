@@ -1,5 +1,5 @@
 # frozen_string_literal: true
-#
+
 # version.rb: Prawn icon versioning.
 #
 # Copyright October 2014, Jesse Doyle. All rights reserved.
@@ -8,6 +8,6 @@
 
 module Prawn
   class Icon
-    VERSION = '3.0.0'
+    VERSION = '3.1.0'
   end
 end

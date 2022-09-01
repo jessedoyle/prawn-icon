@@ -1,5 +1,5 @@
 # frozen_string_literal: true
-#
+
 # tool/fontawesome/converter.rb: Convert FontAweomse metadata to YAML.
 #
 # Copyright March 2018, Jesse Doyle. All rights reserved.

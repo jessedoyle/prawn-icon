@@ -1,5 +1,5 @@
 # frozen_string_literal: true
-#
+
 # interface.rb: Prawn extension module and logic.
 #
 # Copyright October 2016, Jesse Doyle. All rights reserved.
@@ -64,7 +64,7 @@ module Prawn
       #
       def icon(key, opts = {})
         key = translate_key(key)
-        make_icon(key, opts).tap { |i| i&.render }
+        make_icon(key, opts).tap { |i| i && i.render }
       end
 
       # Initialize a new icon object.

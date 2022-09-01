@@ -1,5 +1,5 @@
 # frozen_string_literal: true
-#
+
 # compatibility.rb - Prawn::Icon FontAwesome 4/5 compatibility shim.
 #
 # Copyright March 2018, Jesse Doyle. All rights reserved.
@@ -50,11 +50,11 @@ module Prawn
       end
 
       def warning(new_key, old_key, io)
-        io.puts <<-DEPRECATION
-[Prawn::Icon - DEPRECATION WARNING]
-  FontAwesome 4 icon was referenced as '#{old_key}'.
-  Use the FontAwesome 5 icon '#{new_key}' instead.
-  This compatibility layer will be removed in Prawn::Icon 4.0.0.
+        io.puts <<~DEPRECATION
+          [Prawn::Icon - DEPRECATION WARNING]
+            FontAwesome 4 icon was referenced as '#{old_key}'.
+            Use the FontAwesome 5 icon '#{new_key}' instead.
+            This compatibility layer will be removed in Prawn::Icon 4.0.0.
         DEPRECATION
       end
     end

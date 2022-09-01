@@ -1,5 +1,5 @@
 # frozen_string_literal: true
-#
+
 # base.rb - Base configuration for Prawn::Icon.
 #
 # Copyright September 2016, Jesse Doyle. All rights reserved.

@@ -1,5 +1,5 @@
 # frozen_string_literal: true
-#
+
 # tool/scss/parser.rb: Convert SCSS variables to YAML legend.
 #
 # Copyright September 2017, Jesse Doyle. All rights reserved.

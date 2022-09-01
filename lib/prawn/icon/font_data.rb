@@ -1,5 +1,5 @@
 # frozen_string_literal: true
-#
+
 # font_data.rb: Icon font metadata container/cache.
 #
 # Copyright October 2014, Jesse Doyle. All rights reserved.
@@ -64,9 +64,9 @@ module Prawn
 
       def path
         font = Icon.configuration.font_directory
-          .join(@set.to_s)
-          .glob('*.ttf')
-          .first
+                   .join(@set.to_s)
+                   .glob('*.ttf')
+                   .first
 
         if font.nil?
           raise Prawn::Errors::UnknownFont,
