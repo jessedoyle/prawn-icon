@@ -1,6 +1,5 @@
-# encoding: utf-8
+# frozen_string_literal: true
 
-#
 # tool/fontawesome.rb: Convert Fontawesome SCSS variables to YAML legend.
 #
 # Copyright September 2017, Jesse Doyle. All rights reserved.
@@ -10,7 +9,7 @@
 require_relative 'fontawesome/converter'
 
 puts 'Please enter the path to the icons.yml metadata file ' \
-'(i.e. fontawesome-free/advanced-options/icons.yml):'
+     '(i.e. fontawesome-free/advanced-options/icons.yml):'
 path = File.expand_path(gets.chomp)
 output = File.expand_path('data/fonts')
 puts 'Please enter the font version:'

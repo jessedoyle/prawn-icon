@@ -1,4 +1,6 @@
-basedir = File.expand_path(File.dirname(__FILE__))
+# frozen_string_literal: true
+
+basedir = __dir__
 require "#{basedir}/lib/prawn/icon/version"
 
 Gem::Specification.new do |spec|
@@ -17,23 +19,23 @@ Gem::Specification.new do |spec|
 
   spec.homepage = 'https://github.com/jessedoyle/prawn-icon/'
 
-  spec.test_files = Dir['spec/*_spec.rb']
   spec.authors    = ['Jesse Doyle']
   spec.email      = ['jdoyle@ualberta.ca']
-  spec.licenses   = ['RUBY', 'GPL-2', 'GPL-3']
+  spec.licenses   = %w[RUBY GPL-2 GPL-3]
 
   spec.add_dependency('prawn', '>= 1.1.0', '< 3.0.0')
 
   spec.add_development_dependency('pdf-inspector', '>= 1.2.1')
-  spec.add_development_dependency('rspec', '>= 3.5.0')
-  spec.add_development_dependency('rubocop', '~> 0.49.1')
-  spec.add_development_dependency('rake')
   spec.add_development_dependency('pdf-reader', '>= 1.4')
+  spec.add_development_dependency('rake')
+  spec.add_development_dependency('rspec', '>= 3.5.0')
+  spec.add_development_dependency('rubocop', '~> 1.35.1')
   spec.add_development_dependency('simplecov')
 
-  spec.description = <<-END_DESC
-  Prawn::Icon provides various icon fonts including
-  FontAwesome, PaymentFont and Foundation Icons
-  for use with the Prawn PDF toolkit.
+  spec.description = <<~END_DESC
+    Prawn::Icon provides various icon fonts including
+    FontAwesome, PaymentFont and Foundation Icons
+    for use with the Prawn PDF toolkit.
   END_DESC
+  spec.metadata['rubygems_mfa_required'] = 'true'
 end

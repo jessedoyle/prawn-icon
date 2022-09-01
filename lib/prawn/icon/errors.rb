@@ -1,5 +1,5 @@
-# encoding: utf-8
-#
+# frozen_string_literal: true
+
 # errors.rb - Prawn::Icon standard errors.
 #
 # Copyright September 2016, Jesse Doyle. All rights reserved.

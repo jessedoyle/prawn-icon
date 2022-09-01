@@ -1,5 +1,5 @@
-# encoding: utf-8
-#
+# frozen_string_literal: true
+
 # configuration.rb: Prawn icon configuration.
 #
 # Copyright October 2020, Jesse Doyle. All rights reserved.
@@ -32,7 +32,7 @@ module Prawn
       end
 
       def failsafe_gem_path
-        File.expand_path('../../../..', __FILE__)
+        File.expand_path('../../..', __dir__)
       end
       # :nocov:
     end

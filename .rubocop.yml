@@ -4,25 +4,23 @@ AllCops:
     - 'examples/**/*'
     - 'spec/**/*'
     - 'Rakefile'
-MethodLength:
+  NewCops: enable
+  SuggestExtensions: false
+Gemspec/RequiredRubyVersion:
+  Enabled: false
+Metrics/MethodLength:
   Max: 25
-SignalException:
+Style/SignalException:
   EnforcedStyle: only_raise
-Documentation:
+Style/Documentation:
   Enabled: false
-RegexpLiteral:
+Style/RegexpLiteral:
   Enabled: false
-SpaceAroundOperators:
-  Enabled: false
-RedundantMerge:
-  Enabled: false
-FirstParameterIndentation:
-  Enabled: false
+Style/SafeNavigation:
+  Exclude:
+    - lib/prawn/icon/interface.rb
 Metrics/AbcSize:
   Max: 20
-Layout/EmptyLineAfterMagicComment:
-  Enabled: false
-Layout/IndentHeredoc:
-  Enabled: false
-Layout/MultilineMethodCallIndentation:
-  Enabled: false
+Naming/FileName:
+  Exclude:
+    - gemfiles/*.gemfile

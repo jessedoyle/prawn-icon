@@ -1,3 +1,8 @@
+# 3.1.0 - September 1, 2022
+
+* Update our CI matrix to include recent versions of Prawn and Ruby! Thanks @petergoldstein! (#55)
+* Resolve a few code smells that were flagged by Rubocop.
+
 # 3.0.0 - November 10, 2020
 
 * **breaking change** - Fix incorrect layout and line-wrapping logic for inline-formatted icons. Please see [Inline Format Changes](#inline-format-changes) for more details.

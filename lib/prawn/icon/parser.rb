@@ -1,5 +1,5 @@
-# encoding: utf-8
-#
+# frozen_string_literal: true
+
 # parser.rb: Prawn icon tag text parser (pseudo-HTML).
 #
 # Copyright October 2014, Jesse Doyle. All rights reserved.
@@ -31,15 +31,17 @@ module Prawn
     #
     class Parser
       PARSER_REGEX  = Regexp.new \
-                      '<icon[^>]*>|</icon>',
-                      Regexp::IGNORECASE |
-                      Regexp::MULTILINE
+        '<icon[^>]*>|</icon>',
+        Regexp::IGNORECASE |
+        Regexp::MULTILINE
 
-      CONTENT_REGEX = /<icon[^>]*>(?<content>[^<]*)<\/icon>/mi
+      CONTENT_REGEX = /<icon[^>]*>(?<content>[^<]*)<\/icon>/mi.freeze
 
-      TAG_REGEX     = /<icon[^>]*>[^<]*<\/icon>/mi
+      TAG_REGEX     = /<icon[^>]*>[^<]*<\/icon>/mi.freeze
 
-      ATTR_REGEX    = /(?<attr>[a-zA-Z]*)=["|'](?<val>(\w*[^["|']]))["|']/mi
+      # rubocop:disable Lint/MixedRegexpCaptureTypes
+      ATTR_REGEX    = /(?<attr>[a-zA-Z]*)=["|'](?<val>(\w*[^["|']]))["|']/mi.freeze
+      # rubocop:enable Lint/MixedRegexpCaptureTypes
 
       class << self
         def format(document, string)
@@ -103,9 +105,9 @@ module Prawn
               options ||= {}
               options = config[index] if config.any?
               info = {
-                set:     FontData.specifier_from_key(key),
-                size:    options[:size],
-                color:   options[:color],
+                set: FontData.specifier_from_key(key),
+                size: options[:size],
+                color: options[:color],
                 content: FontData.unicode_from_key(document, key)
               }
               icons << info
@@ -115,7 +117,7 @@ module Prawn
 
         private
 
-        def attr_hash(value) #:nodoc:
+        def attr_hash(value) # :nodoc:
           # If attr == size, we must cast value to float,
           # else symbolize the key and map it to value
           if value[0] =~ /size/i

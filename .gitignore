@@ -5,3 +5,4 @@ Gemfile.lock
 coverage/
 vendor/bundle
 .bundle
+/*.pdf

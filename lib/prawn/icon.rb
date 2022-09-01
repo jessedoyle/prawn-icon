@@ -1,5 +1,5 @@
-# encoding: utf-8
-#
+# frozen_string_literal: true
+
 # icon.rb: Prawn icon functionality.
 #
 # Copyright October 2014, Jesse Doyle. All rights reserved.
