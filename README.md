@@ -87,6 +87,7 @@ Currently supported prefixes include:
 * `fab` - [FontAwesome Brands](https://fontawesome.com/icons?d=gallery&s=brands&m=free) (eg. `fab-amazon`).
 * `far` - [FontAwesome Regular](https://fontawesome.com/icons?d=gallery&s=regular&m=free) (eg. `far-address-book`).
 * `fas` - [FontAwesome Solid](https://fontawesome.com/icons?d=gallery&s=solid&m=free) (eg. `fas-location-arrow`).
+* `mdi` - [Material Design Icons](https://materialdesignicons.com/) (eg. `mdi-beer`),
 * `fi` - [Foundation Icons](https://zurb.com/playground/foundation-icon-fonts-3) (eg. `fi-compass`).
 * `pf` - [PaymentFont](https://paymentfont.com/#icons) (eg. `pf-cash`).
 

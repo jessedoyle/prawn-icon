@@ -2,6 +2,19 @@
 
 * Update our CI matrix to include recent versions of Prawn and Ruby! Thanks @petergoldstein! (#55)
 * Resolve a few code smells that were flagged by Rubocop.
+* [Material Design Icons](https://materialdesignicons.com) are now supported! Currently version `7.0.96` is included. Thanks @maneex! [https://github.com/jessedoyle/prawn-icon/pull/59](Pull Request).
+
+#### Material Design Icons
+
+All Material Design Icons use the font prefix of `mdi`. That means that you're able to reference an icon as follows:
+
+```ruby
+require 'prawn/icon'
+
+Prawn::Document.generate('icons.pdf') do |pdf|
+  pdf.icon 'mdi-beer', size: 60
+end
+```
 
 # 3.0.0 - November 10, 2020
 
