@@ -261,4 +261,13 @@ describe Prawn::Icon do
       expect(text.strings.first).to eq('')
     end
   end
+
+  context 'Material Design Icons' do
+    it 'renders Material Design Icon glyphs' do
+      pdf.icon 'mdi-beer'
+      text = PDF::Inspector::Text.analyze(pdf.render)
+
+      expect(text.strings.first).to eq('')
+    end
+  end
 end
