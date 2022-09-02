@@ -3,6 +3,7 @@
 * Update our CI matrix to include recent versions of Prawn and Ruby! Thanks @petergoldstein! (#55)
 * Resolve a few code smells that were flagged by Rubocop.
 * [Material Design Icons](https://materialdesignicons.com) are now supported! Currently version `7.0.96` is included. Thanks @maneex! [https://github.com/jessedoyle/prawn-icon/pull/59](Pull Request).
+* Memoize calls to `Prawn::Icon::FontData#path` to improve performance.
 
 #### Material Design Icons
 
