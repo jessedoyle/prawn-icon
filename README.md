@@ -9,6 +9,7 @@ Prawn::Icon provides a simple mechanism for rendering icons and icon fonts from 
 The following icon fonts ship with Prawn::Icon:
 
 * FontAwesome (http://fontawesome.io/icons/)
+* Material Design Icons (https://materialdesignicons.com/)
 * Foundation Icons (http://zurb.com/playground/foundation-icon-fonts-3)
 * PaymentFont (https://paymentfont.com)
 
