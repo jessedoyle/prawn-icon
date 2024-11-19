@@ -41,20 +41,34 @@ module Fontawesome
 
     def prepare_legends
       data.each do |key, value|
-        styles = value['styles'].map { |s| "fa#{s[0]}" }
-        unicode = [value['unicode'].hex].pack('U')
-        styles.each do |style|
-          legends[style][key] = unicode
+        prepare_legend(key, value)
+      end
+    end
+
+    def prepare_legend(key, value)
+      styles = value['styles'].map { |s| "fa#{s[0]}" }
+      unicode = [value['unicode'].hex].pack('U')
+      styles.each do |style|
+        legends[style][key] = unicode
+        aliases = value.fetch('aliases', {})
+        alias_names = aliases.fetch('names', [])
+        alias_names.each do |alias_name|
+          legends[style][alias_name] = unicode
         end
       end
     end
 
     def write_legends
       legends.each do |key, value|
+        ordered_value = {}
+        value.keys.sort.each do |sorted_key|
+          ordered_value[sorted_key] = value[sorted_key]
+        end
+
         directory = File.join(output, key)
         FileUtils.mkdir_p(directory)
         path = File.join(directory, "#{key}.yml")
-        File.write(path, { key => value }.to_yaml)
+        File.write(path, { key => ordered_value }.to_yaml)
         puts "Wrote: #{path}"
       end
     end

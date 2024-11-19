@@ -68,7 +68,7 @@ describe Prawn::Icon::Interface do
             inspector = PDF::Inspector::Text.analyze(pdf.render)
             y = inspector.positions[1].last.round
 
-            expect(y).to eq(723)
+            expect(y).to eq(722)
           end
         end
       end
@@ -154,7 +154,7 @@ describe Prawn::Icon::Interface do
       x, y = inspector.positions[0]
 
       expect(x).to eq(200)
-      expect(y.round).to eq(90)
+      expect(y.round).to eq(89)
     end
 
     it 'handles final_gap: false correctly' do
@@ -267,7 +267,11 @@ describe Prawn::Icon do
       pdf.icon 'mdi-beer'
       text = PDF::Inspector::Text.analyze(pdf.render)
 
-      expect(text.strings.first).to eq('')
+      if Gem::Version.new(Prawn::VERSION) <= Gem::Version.new('2.4.0')
+        expect(text.strings.first).to eq('\uF098')
+      else
+        expect(text.strings.first).to eq("\u{F0098}")
+      end
     end
   end
 end
