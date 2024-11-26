@@ -54,7 +54,7 @@ module Prawn
           [Prawn::Icon - DEPRECATION WARNING]
             FontAwesome 4 icon was referenced as '#{old_key}'.
             Use the FontAwesome 5 icon '#{new_key}' instead.
-            This compatibility layer will be removed in Prawn::Icon 4.0.0.
+            This compatibility layer will be removed in a future major release.
         DEPRECATION
       end
     end
