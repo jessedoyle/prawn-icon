@@ -267,8 +267,10 @@ describe Prawn::Icon do
       pdf.icon 'mdi-beer'
       text = PDF::Inspector::Text.analyze(pdf.render)
 
+      # NOTE: Prawn <= 2.4.0 incorrectly handled unicode codepoints
+      # see: https://github.com/prawnpdf/prawn/pull/1327#issuecomment-1905817491
       if Gem::Version.new(Prawn::VERSION) <= Gem::Version.new('2.4.0')
-        expect(text.strings.first).to eq('\uF098')
+        expect(text.strings.first).to eq("\u{F009}")
       else
         expect(text.strings.first).to eq("\u{F0098}")
       end
