@@ -1,8 +1,8 @@
 ---
 fab:
+  __font_version__: 6.7.1
   42-group: ""
   500px: ""
-  __font_version__: 6.7.0
   accessible-icon: ""
   accusoft: ""
   adn: ""
@@ -98,6 +98,7 @@ fab:
   creative-commons-share: ""
   creative-commons-zero: ""
   critical-role: ""
+  css: ""
   css3: ""
   css3-alt: ""
   cuttlefish: ""
@@ -393,6 +394,7 @@ fab:
   speaker-deck: ""
   spotify: ""
   square-behance: ""
+  square-bluesky: ""
   square-dribbble: ""
   square-facebook: ""
   square-font-awesome: ""
