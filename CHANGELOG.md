@@ -1,12 +1,12 @@
 # 4.0.0 - November 25, 2024
 
-* **breaking change** - Update from FontAwesom 5.11.2 to 6.7.1. Please see the notes [here](https://fontawesome.com/changelog#v6-0-0) for information related to changed or removed icons in the set. Thanks @pepijnve! [https://github.com/jessedoyle/prawn-icon/pull/62](Pull Request)
+* **breaking change** - Update from FontAwesome 5.11.2 to 6.7.1. Please see the notes [here](https://fontawesome.com/changelog#v6-0-0) for information related to changed or removed icons in the set. Thanks @pepijnve! [Pull Request](https://github.com/jessedoyle/prawn-icon/pull/62)
 
 # 3.1.0 - September 1, 2022
 
 * Update our CI matrix to include recent versions of Prawn and Ruby! Thanks @petergoldstein! (#55)
 * Resolve a few code smells that were flagged by Rubocop.
-* [Material Design Icons](https://materialdesignicons.com) are now supported! Currently version `7.0.96` is included. Thanks @maneex! [https://github.com/jessedoyle/prawn-icon/pull/59](Pull Request).
+* [Material Design Icons](https://materialdesignicons.com) are now supported! Currently version `7.0.96` is included. Thanks @maneex! [Pull Request](https://github.com/jessedoyle/prawn-icon/pull/59).
 * Memoize calls to `Prawn::Icon::FontData#path` to improve performance.
 
 #### Material Design Icons
