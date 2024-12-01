@@ -225,7 +225,16 @@ module Prawn
 
     def render
       @pdf.font(@data.path) do
-        @pdf.text @unicode, @options
+        opts = @options
+
+        if @options.fetch(:size_mode, :font_size) == :icon_height
+          requested_size = @options[:size] || @pdf.font_size
+          actual_height = @pdf.font.height_at(requested_size)
+          adjusted_size = requested_size / actual_height * requested_size
+          opts = opts.merge(size: adjusted_size)
+        end
+
+        @pdf.text @unicode, opts
       end
     end
 
