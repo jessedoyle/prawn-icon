@@ -18,6 +18,13 @@ describe Prawn::Icon::Interface do
 
           expect(text.font_settings.first[:size]).to eq(60)
         end
+
+        it 'should handle text options (icon height)' do
+          pdf.icon 'far-address-book', size: 60, size_mode: :icon_height
+          text = PDF::Inspector::Text.analyze(pdf.render)
+
+          expect(text.font_settings.first[:size]).to be_within(0.0001).of(58.25243)
+        end
       end
 
       context 'inline_format: true' do
