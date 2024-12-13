@@ -101,7 +101,7 @@ If you wish to fork this repository and add a new font, you'll likely need to su
 
 ## Examples
 
-A Rake task is included to generate documents that display each icon and it's corresponding icon key.
+A Rake task is included to generate documents that display each icon and its corresponding icon key.
 
 The command:
 
@@ -118,6 +118,23 @@ You can optionally configure Prawn::Icon to use an alternate data directory for 
 ```ruby
 Prawn::Icon.configure do |config|
   config.font_directory = '/path/to/my/fonts'
+end
+```
+
+## Icon Size Mode
+
+Some font families (in particular those of FontAwesome 6) define metrics that may render an icon at a size larger than requested (as described [here](https://github.com/jessedoyle/prawn-icon/pull/62#issuecomment-2501622305)).
+
+Prawn::Icon provides a `size_mode` parameter that can be utilized to control this behaviour:
+
+* `size_mode: :font_size` (**default**) - Renders the icon at a size calculated via font metrics. This may result in an icon that renders larger than requested due to ascender/descender metrics.
+* `size_mode: :icon_height` - Renders the icon at a size scaled down to the requested size.
+
+You can specify the size mode as follows:
+
+```ruby
+Prawn::Document.generate('size_mode.pdf') do |pdf|
+  pdf.icon 'far-circle', size: 100, size_mode: :icon_height
 end
 ```
 
