@@ -1,3 +1,9 @@
+# 4.1.0 - December 12, 2024
+
+* Add a `size_mode` option to the `icon` method that scales the size of the rendered icon to fit within the requested value.
+
+Please see the documentation [here](https://github.com/jessedoyle/prawn-icon?tab=readme-ov-file#icon-size-mode) for further information. Thanks @pepijnve! [Pull Request](https://github.com/jessedoyle/prawn-icon/pull/65)
+
 # 4.0.0 - November 25, 2024
 
 * **breaking change** - Update from FontAwesome 5.11.2 to 6.7.1. Please see the notes [here](https://fontawesome.com/changelog#v6-0-0) for information related to changed or removed icons in the set. Thanks @pepijnve! [Pull Request](https://github.com/jessedoyle/prawn-icon/pull/62)
